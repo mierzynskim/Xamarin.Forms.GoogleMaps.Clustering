@@ -162,6 +162,10 @@
       <Project>{aaa2a1f0-b96f-40c8-b4fe-f42149e848b5}</Project>
       <Name>Xamarin.Forms.GoogleMaps.Clustering.Android</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Xamarin.Forms.GoogleMaps.Clustering\Xamarin.Forms.GoogleMaps.Clustering.csproj">
+      <Project>{3ebd76ca-8703-49a3-9a0d-6827ef43bc73}</Project>
+      <Name>Xamarin.Forms.GoogleMaps.Clustering</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps.Android\Xamarin.Forms.GoogleMaps.Android.csproj">
       <Project>{d12eade4-1457-4126-8ea7-9bedf5393409}</Project>
       <Name>Xamarin.Forms.GoogleMaps.Android</Name>

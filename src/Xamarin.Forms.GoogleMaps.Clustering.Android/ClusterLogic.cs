@@ -21,13 +21,13 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
 
         private volatile bool _onMarkerEvent = false;
         private Pin _draggingPin;
-        private volatile bool _withoutUpdateNative = false;
+        private volatile bool _withoutUpdateNative;
         
         private ClusterManager _clusterManager;
         private ClusterLogicHandler _clusterHandler;
 
         private readonly Context _context;
-        protected readonly IBitmapDescriptorFactory _bitmapDescriptorFactory;
+        private readonly IBitmapDescriptorFactory _bitmapDescriptorFactory;
         private readonly Action<Pin, MarkerOptions> _onMarkerCreating;
         private readonly Action<Pin, ClusteredMarker> _onMarkerCreated;
         private readonly Action<Pin, ClusteredMarker> _onMarkerDeleting;
@@ -55,7 +55,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
         {
             base.Register(oldNativeMap, oldMap, newNativeMap, newMap);
 
-            this._clusterManager = new ClusterManager(Xamarin.Forms.Forms.Context, this.NativeMap);
+            this._clusterManager = new ClusterManager(_context, this.NativeMap);
             this._clusterHandler = new ClusterLogicHandler(this.Map, this._clusterManager, this);
 
             switch (this.ClusteredMap.ClusterOptions.Algorithm)

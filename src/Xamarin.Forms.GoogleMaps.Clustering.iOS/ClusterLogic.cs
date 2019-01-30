@@ -360,10 +360,10 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
                 NativeMap.InvokeOnMainThread(() =>
                 {
                     var iconView = outerItem.Icon.View;
-                    var nativeView = GoogleMaps.iOS.Utils.ConvertFormsToNative(iconView, new CGRect(0, 0, iconView.WidthRequest, iconView.HeightRequest));
+                    var nativeView = Utils.ConvertFormsToNative(iconView, new CGRect(0, 0, iconView.WidthRequest, iconView.HeightRequest));
                     nativeView.BackgroundColor = UIColor.Clear;
                     nativeItem.GroundAnchor = new CGPoint(iconView.AnchorX, iconView.AnchorY);
-                    nativeItem.Icon = GoogleMaps.iOS.Utils.ConvertViewToImage(nativeView);
+                    nativeItem.Icon = Utils.ConvertViewToImage(nativeView);
 
                     // Would have been way cooler to do this instead, but surprisingly, we can't do this on Android:
                     // nativeItem.IconView = nativeView;
