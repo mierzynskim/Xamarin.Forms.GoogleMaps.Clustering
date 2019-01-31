@@ -2,6 +2,13 @@
 
 This library brings support for clustering for library [Xamarin.Forms.GoogleMaps](https://github.com/amay077/Xamarin.Forms.GoogleMaps)
 
+## Usage 
+
+Add the following line to `AssemlyInfo.cs` or `Main.cs`/`MainActivity.cs` file in your Android and iOS projects
+```csharp
+[assembly: ExportRenderer(typeof(ClusteredMap), typeof(ClusteredMapRenderer))]
+``` 
+
 ## Credits
 Credits to all involved in development, testing and discussion in the [original issue thread](https://github.com/amay077/Xamarin.Forms.GoogleMaps/issues/123). Special thanks to [@YahavGB](https://github.com/YahavGB) who implemented a big part of clustering solution.
 
