@@ -33,6 +33,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
         private readonly Action<Pin, ClusteredMarker> _onMarkerDeleting;
         private readonly Action<Pin, ClusteredMarker> _onMarkerDeleted;
 
+        private global::Android.Gms.Maps.Model.CameraPosition _previousCameraPostion;
+
         public ClusteredMap ClusteredMap => (ClusteredMap) Map;
 
         public ClusterLogic(
@@ -79,7 +81,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             {
                 this.ClusteredMap.OnCluster = HandleClusterRequest;
 
-                this.NativeMap.SetOnCameraIdleListener(this._clusterManager);
+                this.NativeMap.CameraIdle += NativeMapOnCameraIdle;
                 this.NativeMap.SetOnMarkerClickListener(this._clusterManager);
                 this.NativeMap.SetOnInfoWindowClickListener(this._clusterManager);
 
@@ -95,11 +97,21 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             }
         }
 
+        private void NativeMapOnCameraIdle(object sender, EventArgs e)
+        {
+            var cameraPosition = this.NativeMap.CameraPosition;
+            if(_previousCameraPostion == null || Math.Abs(_previousCameraPostion.Zoom - cameraPosition.Zoom) > 0.001) 
+            {
+                _previousCameraPostion = this.NativeMap.CameraPosition;
+                _clusterManager.Cluster();
+            }
+        }
+
         internal override void Unregister(GoogleMap nativeMap, Map map)
         {
             if (nativeMap != null)
             {
-                this.NativeMap.SetOnCameraChangeListener(null);
+                this.NativeMap.CameraIdle -= NativeMapOnCameraIdle;
                 this.NativeMap.SetOnMarkerClickListener(null);
                 this.NativeMap.SetOnInfoWindowClickListener(null);
 
