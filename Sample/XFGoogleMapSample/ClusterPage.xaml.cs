@@ -10,7 +10,7 @@ namespace XFGoogleMapSample
     {
         private const int ClusterItemsCount = 1000;// 10000;
         private const double Extent = 0.2;
-        private Position _currentPosition = new Position(31.768319, 35.213710);
+        private Position _currentPosition = new Position(52.225665764, 21.003833318);
         private readonly Random _random = new Random();
 
         public ClusterPage()
@@ -33,7 +33,6 @@ namespace XFGoogleMapSample
             }
 
             Map.PinClicked += MapOnPinClicked;
-            //Map.CameraIdled += MapOnCameraIdled;
             Map.InfoWindowClicked += MapOnInfoWindowClicked;
             Map.InfoWindowLongClicked += MapOnInfoWindowLongClicked;
 
@@ -45,11 +44,6 @@ namespace XFGoogleMapSample
             await DisplayAlert("Pin clicked", e.Pin?.Label, "Cancel");
         }
 
-        private async void MapOnCameraIdled(object sender, CameraIdledEventArgs e)
-        {
-            await DisplayAlert("Camera idled", $"{e.Position.Target.Latitude} {e.Position.Target.Longitude}", "Cancel");
-        }
-        
         private async void MapOnInfoWindowClicked(object sender, InfoWindowClickedEventArgs e)
         {
             await DisplayAlert("Info clicked", $"{e.Pin?.Position.Latitude} {e.Pin?.Position.Longitude}", "Cancel");

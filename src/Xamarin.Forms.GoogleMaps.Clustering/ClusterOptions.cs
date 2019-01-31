@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Xamarin.Forms.GoogleMaps
+namespace Xamarin.Forms.GoogleMaps.Clustering
 {
     public class ClusterOptions
     {
@@ -13,7 +13,7 @@ namespace Xamarin.Forms.GoogleMaps
         public ClusterAlgorithm Algorithm { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="T:Xamarin.Forms.GoogleMaps.ClusterOptions"/> enable buckets grouping.
+        /// Gets or sets a value indicating whether this <see cref="T:Xamarin.Forms.GoogleMaps.Clustering.ClusterOptions"/> enable buckets grouping.
         /// </summary>
         /// <value><c>true</c> if enable buckets; otherwise, <c>false</c>.</value>
         /// <example>

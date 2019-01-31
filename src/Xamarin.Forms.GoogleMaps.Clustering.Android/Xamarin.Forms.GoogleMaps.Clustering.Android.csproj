@@ -150,7 +150,6 @@
     <Compile Include="ClusterLogic.cs" />
     <Compile Include="Cluster\ClusterLogicHandler.cs" />
     <Compile Include="Cluster\XamarinClusterRenderer.cs" />
-    <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
