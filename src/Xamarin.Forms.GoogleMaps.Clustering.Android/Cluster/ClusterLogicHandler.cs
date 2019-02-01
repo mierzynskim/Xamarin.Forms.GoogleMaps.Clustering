@@ -9,15 +9,15 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android.Cluster
         ClusterManager.IOnClusterInfoWindowClickListener,
         ClusterManager.IOnClusterItemInfoWindowClickListener
     {
-        private Map _map;
-        private ClusterManager _clusterManager;
-        private ClusterLogic _logic;
+        private Map map;
+        private ClusterManager clusterManager;
+        private ClusterLogic logic;
 
         public ClusterLogicHandler(Map map, ClusterManager manager, ClusterLogic logic)
         {
-            this._map = map;
-            this._clusterManager = manager;
-            this._logic = logic;
+            this.map = map;
+            clusterManager = manager;
+            this.logic = logic;
         }
 
         public bool OnClusterClick(ICluster cluster)
@@ -28,15 +28,15 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android.Cluster
 
         public bool OnClusterItemClick(Java.Lang.Object nativeItemObj)
         {
-            var targetPin = _logic.LookupPin(nativeItemObj as ClusteredMarker);
+            var targetPin = logic.LookupPin(nativeItemObj as ClusteredMarker);
            
             targetPin?.SendTap();
 
             if (targetPin != null)
             {
-                if (!ReferenceEquals(targetPin, _map.SelectedPin))
-                    _map.SelectedPin = targetPin;
-                _map.SendPinClicked(targetPin);
+                if (!ReferenceEquals(targetPin, map.SelectedPin))
+                    map.SelectedPin = targetPin;
+                map.SendPinClicked(targetPin);
             }
 
             return false;
@@ -49,13 +49,13 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android.Cluster
 
         public void OnClusterItemInfoWindowClick(Java.Lang.Object nativeItemObj)
         {
-            var targetPin = _logic.LookupPin(nativeItemObj as ClusteredMarker);
+            var targetPin = logic.LookupPin(nativeItemObj as ClusteredMarker);
            
             targetPin?.SendTap();
 
             if (targetPin != null)
             {
-                _map.SendInfoWindowClicked(targetPin);
+                map.SendInfoWindowClicked(targetPin);
             }
         }
     }

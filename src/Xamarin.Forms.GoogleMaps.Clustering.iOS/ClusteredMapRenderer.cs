@@ -6,7 +6,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
     {
         public ClusteredMapRenderer()
         {
-            _logics.Add(new ClusterLogic(Config.ImageFactory, OnMarkerCreating, OnMarkerCreated, OnMarkerDeleting, OnMarkerDeleted));
+            _logics.Add(new ClusterLogic(Config.ImageFactory,
+                OnMarkerCreating, OnMarkerCreated, OnMarkerDeleting, OnMarkerDeleted));
         }
     }
 }

@@ -68,6 +68,8 @@
     <Compile Include="ClusteredMarker.cs" />
     <Compile Include="ClusterLogic.cs" />
     <Compile Include="ClusteredMapRenderer.cs" />
+    <Compile Include="GmuClusterIconGeneratorHandler.cs" />
+    <Compile Include="GmuClusterRendererHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

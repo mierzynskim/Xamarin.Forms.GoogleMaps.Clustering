@@ -11,23 +11,23 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
 {
     public class ClusteredMapRenderer : MapRenderer
     {
-        readonly ClusterLogic _clusterLogic;
+        readonly ClusterLogic clusterLogic;
         
         private ClusteredMap ClusteredMap => (ClusteredMap) Map;
         
         public ClusteredMapRenderer(Context context) : base(context)
         {
-            _clusterLogic = new ClusterLogic(context, Config.BitmapDescriptorFactory,
+            clusterLogic = new ClusterLogic(context, Config.BitmapDescriptorFactory,
                 OnClusteredMarkerCreating, OnClusteredMarkerCreated, OnClusteredMarkerDeleting,
                 OnClusteredMarkerDeleted);
-            _logics.Add(_clusterLogic);
+            _logics.Add(clusterLogic);
         }
 
         protected override void OnMapReady(GoogleMap nativeMap, Map map)
         {
             base.OnMapReady(nativeMap, map);
-            if (this.ClusteredMap.PendingClusterRequest)
-                _clusterLogic.HandleClusterRequest();
+            if (ClusteredMap.PendingClusterRequest)
+                clusterLogic.HandleClusterRequest();
         }
         
         /// <summary>

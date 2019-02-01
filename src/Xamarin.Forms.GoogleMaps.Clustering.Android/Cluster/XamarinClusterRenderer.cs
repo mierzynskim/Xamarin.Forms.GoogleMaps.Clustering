@@ -12,165 +12,136 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android.Cluster
 {
     public class XamarinClusterRenderer : DefaultClusterRenderer
     {
-        private ClusteredMap _map;
-        private SparseArray<NativeBitmapDescriptor> _standardCache;
-        private SparseArray<NativeBitmapDescriptor> _icons;
-        private readonly float _density;
+        private readonly ClusteredMap map;
+        private readonly SparseArray<NativeBitmapDescriptor> standardCache;
+        private readonly SparseArray<NativeBitmapDescriptor> icons;
+        private readonly float density;
 
-        public XamarinClusterRenderer(Context context, ClusteredMap map, GoogleMap nativeMap, ClusterManager manager)
+        public XamarinClusterRenderer(Context context,
+            ClusteredMap map,
+            GoogleMap nativeMap,
+            ClusterManager manager)
             : base(context, nativeMap, manager)
         {
-            this._map = map;
-            this._standardCache = new SparseArray<NativeBitmapDescriptor>();
-            this._icons = new SparseArray<NativeBitmapDescriptor>();
+            this.map = map;
+            standardCache = new SparseArray<NativeBitmapDescriptor>();
+            icons = new SparseArray<NativeBitmapDescriptor>();
         }
 
         protected override void OnBeforeClusterRendered(ICluster cluster, MarkerOptions options)
         {
-            /* How we're drawing this? */
-            if (this._map.ClusterOptions.RendererCallback != null)
+            if (map.ClusterOptions.RendererCallback != null)
             {
-                /* We're using custom lambda callback */
-
-                /* We're using custom image */
-                if (this._map.ClusterOptions.EnableBuckets)
+                if (map.ClusterOptions.EnableBuckets)
                 {
-                    var bucketIndex = this.BucketIndexForSize(cluster.Size);
-                    var icon = this._icons.Get(bucketIndex);
+                    var bucketIndex = BucketIndexForSize(cluster.Size);
+                    var icon = icons.Get(bucketIndex);
                     if (icon == null)
                     {
-                        icon = DefaultBitmapDescriptorFactory.Instance.ToNative(this._map.ClusterOptions.RendererCallback(this.GetClusterText(cluster)));
-                        this._icons.Put(bucketIndex, icon);
+                        icon = DefaultBitmapDescriptorFactory.Instance.ToNative(map.ClusterOptions.RendererCallback(GetClusterText(cluster)));
+                        icons.Put(bucketIndex, icon);
                     }
 
                     options.SetIcon(icon);
                 }
                 else
                 {
-                    var bucketIndex = this.BucketIndexForSize(cluster.Size);
-                    var icon = this._standardCache.Get(bucketIndex);
+                    var bucketIndex = BucketIndexForSize(cluster.Size);
+                    var icon = standardCache.Get(bucketIndex);
                     if (icon == null)
                     {
-                        icon = DefaultBitmapDescriptorFactory.Instance.ToNative(this._map.ClusterOptions.RendererCallback(cluster.Size.ToString()));
-                        this._standardCache.Put(bucketIndex, icon);
+                        icon = DefaultBitmapDescriptorFactory.Instance.ToNative(map.ClusterOptions.RendererCallback(cluster.Size.ToString()));
+                        standardCache.Put(bucketIndex, icon);
                     }
 
                     options.SetIcon(icon);
                 }
             }
-            else if (this._map.ClusterOptions.RendererImage != null)
+            else if (map.ClusterOptions.RendererImage != null)
             {
-                /* We're using custom image */
-                if (this._map.ClusterOptions.EnableBuckets)
+                if (map.ClusterOptions.EnableBuckets)
                 {
-                    var bucketIndex = this.BucketIndexForSize(cluster.Size);
-                    var icon = this._icons.Get(bucketIndex);
+                    var bucketIndex = BucketIndexForSize(cluster.Size);
+                    var icon = icons.Get(bucketIndex);
                     if (icon == null)
                     {
-                        icon = DefaultBitmapDescriptorFactory.Instance.ToNative(this._map.ClusterOptions.RendererImage);
-                        this._icons.Put(bucketIndex, icon);
+                        icon = DefaultBitmapDescriptorFactory.Instance.ToNative(map.ClusterOptions.RendererImage);
+                        icons.Put(bucketIndex, icon);
                     }
 
                     options.SetIcon(icon);
                 }
                 else
                 {
-                    var bucketIndex = this.BucketIndexForSize(cluster.Size);
-                    var icon = this._standardCache.Get(bucketIndex);
+                    var bucketIndex = BucketIndexForSize(cluster.Size);
+                    var icon = standardCache.Get(bucketIndex);
                     if (icon == null)
                     {
-                        icon = DefaultBitmapDescriptorFactory.Instance.ToNative(this._map.ClusterOptions.RendererImage);
-                        this._standardCache.Put(bucketIndex, icon);
+                        icon = DefaultBitmapDescriptorFactory.Instance.ToNative(map.ClusterOptions.RendererImage);
+                        standardCache.Put(bucketIndex, icon);
                     }
 
                     options.SetIcon(icon);
                 }
             }
             else
-            {
-                /* We can't access R directly here, so we'll just rely on the default implementation,
-                which will use our buckets (see GetColor and GetBucket). */
                 base.OnBeforeClusterRendered(cluster, options);
-            }
         }
 
         protected override void OnBeforeClusterItemRendered(Java.Lang.Object marker, MarkerOptions options)
         {
-            /* Fetch the clustered marker */
             var clusteredMarker = marker as ClusteredMarker;
 
-            /* Fill the marker options from the clustered marker, the base method
-             * will use these options to generate the pin, so we don't need to work hard here, yay! */
             options.SetTitle(clusteredMarker.Title)
                 .SetSnippet(clusteredMarker.Snippet)
                 .SetSnippet(clusteredMarker.Snippet)
                 .Draggable(clusteredMarker.Draggable)
                 .SetRotation(clusteredMarker.Rotation)
-                .Anchor((float)clusteredMarker.AnchorX, (float)clusteredMarker.AnchorY)
+                .Anchor(clusteredMarker.AnchorX, clusteredMarker.AnchorY)
                 .Flat(clusteredMarker.Flat);
 
-            /* Do we got an icon? */
             if (clusteredMarker.Icon != null)
-            {
                 options.SetIcon(clusteredMarker.Icon);
-            }
 
-            /* Shot! */
             base.OnBeforeClusterItemRendered(marker, options);
         }
 
         protected override int GetBucket(ICluster cluster)
         {
-            int size = cluster.Size;
-            if (size <= this._map.ClusterOptions.Buckets[0])
-            {
+            var size = cluster.Size;
+            if (size <= map.ClusterOptions.Buckets[0])
                 return size;
-            }
-            return this._map.ClusterOptions.Buckets[this.BucketIndexForSize(cluster.Size)];
+            return map.ClusterOptions.Buckets[BucketIndexForSize(cluster.Size)];
         }
 
         protected override int GetColor(int size)
         {
-            return this._map.ClusterOptions.BucketColors[this.BucketIndexForSize(size)].ToAndroid();
+            return map.ClusterOptions.BucketColors[BucketIndexForSize(size)].ToAndroid();
         }
 
 
         private string GetClusterText(ICluster cluster)
         {
-            string result = null;
+            string result;
             var size = cluster.Size;
 
-            /* We're using buckets? */
-            if (this._map.ClusterOptions.EnableBuckets)
+            if (map.ClusterOptions.EnableBuckets)
             {
-                var buckets = this._map.ClusterOptions.Buckets;
-                var bucketIndex = this.BucketIndexForSize(size);
-                // If size is smaller to first bucket size, use the size as is otherwise round it down to the
-                // nearest bucket to limit the number of cluster icons we need to generate.
+                var buckets = map.ClusterOptions.Buckets;
+                var bucketIndex = BucketIndexForSize(size);
 
-                if (size < buckets[0])
-                {
-                    result = size.ToString();
-                }
-                else
-                {
-                    result = $"{buckets[bucketIndex]}+";
-                }
+                result = size < buckets[0] ? size.ToString() : $"{buckets[bucketIndex]}+";
             }
             else
-            {
                 result = size.ToString();
-            }
 
             return result;
         }
 
         private int BucketIndexForSize(int size)
         {
-            // Finds the smallest bucket which is greater than |size|. If none exists return the last bucket
-            // index (i.e |_buckets.count - 1|).
             uint index = 0;
-            var buckets = this._map.ClusterOptions.Buckets;
+            var buckets = map.ClusterOptions.Buckets;
 
             while (index + 1 < buckets.Length && buckets[index + 1] <= size)
             {
@@ -179,6 +150,5 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android.Cluster
 
             return (int)index;
         }
-
     }
 }

@@ -5,10 +5,6 @@ using NativeBitmapDescriptor = Android.Gms.Maps.Model.BitmapDescriptor;
 
 namespace Xamarin.Forms.GoogleMaps.Clustering.Android
 {
-    /* Note, we can't inherit Marker, like we done in iOS,
-     * since we must inherit from Java.Lang.Object.
-     * 
-     * Thus, we'll just use the same marker code that exists in Marker. */
     public class ClusteredMarker : Java.Lang.Object, IClusterItem
     {
         public LatLng Position { get; set; }
