@@ -262,8 +262,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
                 nativeItem.Icon = nativeDescriptor;
                 nativeItem.AnchorX = 0.5f;
                 nativeItem.AnchorY = 0.5f;
-                //TODO check if clustered marked can support it
-                //nativeItem.SetInfoWindowAnchor(0.5f, 0f);
+                nativeItem.InfoWindowAnchorX = 0.5f;
+                nativeItem.InfoWindowAnchorY = 0.5f;
             }
         }
 
@@ -319,8 +319,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
 
         protected override void OnUpdateInfoWindowAnchor(Pin outerItem, ClusteredMarker nativeItem)
         {
-            //TODO check if clustered marked can support it
-            //nativeItem.SetInfoWindowAnchor((float) outerItem.InfoWindowAnchor.X, (float) outerItem.InfoWindowAnchor.Y);
+            nativeItem.InfoWindowAnchorX = (float) outerItem.InfoWindowAnchor.X;
+            nativeItem.InfoWindowAnchorY = (float) outerItem.InfoWindowAnchor.Y;
         }
 
         protected override void OnUpdateZIndex(Pin outerItem, ClusteredMarker nativeItem)

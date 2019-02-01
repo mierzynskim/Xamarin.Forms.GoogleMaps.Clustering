@@ -30,6 +30,10 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
         public float AnchorX { get; set; }
 
         public float AnchorY { get; set; }
+        
+        public float InfoWindowAnchorX { get; set; }
+
+        public float InfoWindowAnchorY { get; set; }
 
         public NativeBitmapDescriptor Icon { get; set; }
         
@@ -45,6 +49,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             Rotation = outerItem.Rotation;
             AnchorX = (float)outerItem.Anchor.X;
             AnchorY = (float)outerItem.Anchor.Y;
+            InfoWindowAnchorX = (float)outerItem.InfoWindowAnchor.X;
+            InfoWindowAnchorY = (float)outerItem.InfoWindowAnchor.Y;
             Flat = outerItem.Flat;
             Alpha = 1f - outerItem.Transparency;
         }

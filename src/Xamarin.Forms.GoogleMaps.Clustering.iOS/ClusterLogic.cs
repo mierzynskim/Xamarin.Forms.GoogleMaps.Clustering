@@ -55,6 +55,9 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
                 case ClusterAlgorithm.GridBased:
                     algorithm = new GMUGridBasedClusterAlgorithm();
                     break;
+                case ClusterAlgorithm.VisibleNonHierarchicalDistanceBased:
+                    throw new NotSupportedException("VisibleNonHierarchicalDistanceBased is only supported on Android");
+                    break;
                 default:
                     algorithm = new GMUNonHierarchicalDistanceBasedAlgorithm();
                     break;
@@ -65,7 +68,6 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             var clusterRenderer = new GmuClusterRendererHandler(newNativeMap, iconGenerator);
 
             clusterManager = new GMUClusterManager(newNativeMap, algorithm, clusterRenderer);
-
 
             ClusteredMap.OnCluster = HandleClusterRequest;
 
@@ -98,15 +100,18 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
 
         protected override ClusteredMarker CreateNativeItem(Pin outerItem)
         {
-            var nativeMarker = new ClusteredMarker() { Position = outerItem.Position.ToCoord() };
-            nativeMarker.Title = outerItem.Label;
-            nativeMarker.Snippet = outerItem.Address ?? string.Empty;
-            nativeMarker.Draggable = outerItem.IsDraggable;
-            nativeMarker.Rotation = outerItem.Rotation;
-            nativeMarker.GroundAnchor = new CGPoint(outerItem.Anchor.X, outerItem.Anchor.Y);
-            nativeMarker.Flat = outerItem.Flat;
-            nativeMarker.ZIndex = outerItem.ZIndex;
-            nativeMarker.Opacity = 1f - outerItem.Transparency;
+            var nativeMarker = new ClusteredMarker
+            {
+                Position = outerItem.Position.ToCoord(),
+                Title = outerItem.Label,
+                Snippet = outerItem.Address ?? string.Empty,
+                Draggable = outerItem.IsDraggable,
+                Rotation = outerItem.Rotation,
+                GroundAnchor = new CGPoint(outerItem.Anchor.X, outerItem.Anchor.Y),
+                Flat = outerItem.Flat,
+                ZIndex = outerItem.ZIndex,
+                Opacity = 1f - outerItem.Transparency
+            };
 
             if (outerItem.Icon != null)
             {
@@ -274,8 +279,6 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             }
         }
 
-
-
         protected override void OnUpdateAddress(Pin outerItem, ClusteredMarker nativeItem)
             => nativeItem.Snippet = outerItem.Address;
 
@@ -363,22 +366,12 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
 
         protected override void OnUpdateZIndex(Pin outerItem, ClusteredMarker nativeItem)
         {
-            nativeItem.InfoWindowAnchor = new CGPoint(outerItem.Anchor.X, outerItem.Anchor.Y);
+            nativeItem.ZIndex = outerItem.ZIndex;
         }
 
         protected override void OnUpdateTransparency(Pin outerItem, ClusteredMarker nativeItem)
         {
             nativeItem.Opacity = 1f - outerItem.Transparency;
         }
-
-
-        #region GMUDefaultClusterRenderer
-
-        #endregion
-
-        #region GMUDefaultClusterIconGenerator
-
-        #endregion
-
     }
 }

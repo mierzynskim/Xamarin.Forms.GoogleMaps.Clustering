@@ -98,6 +98,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android.Cluster
                 .Draggable(clusteredMarker.Draggable)
                 .SetRotation(clusteredMarker.Rotation)
                 .Anchor(clusteredMarker.AnchorX, clusteredMarker.AnchorY)
+                .InfoWindowAnchor(clusteredMarker.InfoWindowAnchorX, clusteredMarker.InfoWindowAnchorY)
                 .Flat(clusteredMarker.Flat);
 
             if (clusteredMarker.Icon != null)
@@ -118,7 +119,6 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android.Cluster
         {
             return map.ClusterOptions.BucketColors[BucketIndexForSize(size)].ToAndroid();
         }
-
 
         private string GetClusterText(ICluster cluster)
         {
