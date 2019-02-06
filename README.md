@@ -4,7 +4,10 @@ This library brings support for clustering for library [Xamarin.Forms.GoogleMaps
 
 ## Usage 
 
-Add the following line to `AssemlyInfo.cs` or `Main.cs`/`MainActivity.cs` file in your Android and iOS projects
+1. Remove official Xamarin.Forms.GoogleMaps package. It won't be neccessary when clustering doesn't need to use custom fork of this package.
+
+2. Add the following line to `AssemlyInfo.cs` or `Main.cs`/`MainActivity.cs` file in your Android and iOS projects
+
 ```csharp
 [assembly: ExportRenderer(typeof(ClusteredMap), typeof(ClusteredMapRenderer))]
 ``` 
