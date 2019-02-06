@@ -23,5 +23,5 @@ steps:
 - task: MSBuild@1
   displayName: 'Build solution Xamarin.Forms.GoogleMaps.Clustering.sln'
   inputs:
-    solution: Xamarin.Forms.GoogleMaps.Clustering.sln
+    solution: src/Xamarin.Forms.GoogleMaps.Clustering.sln
     msbuildArguments: '/t:restore;build /p:Configuration=Release'
