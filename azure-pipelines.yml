@@ -20,8 +20,8 @@ steps:
   inputs:
     restoreSolution: '**/*.sln'
 
-- task: XamarinAndroid@1
+- task: MSBuild@1
+  displayName: 'Build solution Xamarin.Forms.GoogleMaps.Clustering.sln'
   inputs:
-    projectFile: '**/*Android*.csproj'
-    outputDirectory: '$(outputDirectory)'
-    configuration: '$(buildConfiguration)'
+    solution: Xamarin.Forms.GoogleMaps.Clustering.sln
+    msbuildArguments: '/t:restore;build /p:Configuration=Release'
