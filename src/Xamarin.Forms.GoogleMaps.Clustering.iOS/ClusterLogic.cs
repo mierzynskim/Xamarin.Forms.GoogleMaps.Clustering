@@ -170,14 +170,14 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
 
         private Pin LookupPin(Marker marker)
         {
-            return GetItems(Map).FirstOrDefault(outerItem => outerItem.Label.Equals(marker.Title));
+            var associatedClusteredMarker = marker.UserData;
+            return GetItems(Map).FirstOrDefault(outerItem => ReferenceEquals(outerItem.NativeObject, associatedClusteredMarker));
         }
 
         private void HandleClusterRequest()
         {
             clusterManager.Cluster();
         }
-
 
         private void OnInfoTapped(object sender, GMSMarkerEventEventArgs e)
         {
