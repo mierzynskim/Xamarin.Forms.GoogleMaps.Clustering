@@ -9,11 +9,11 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android.Cluster
         ClusterManager.IOnClusterInfoWindowClickListener,
         ClusterManager.IOnClusterItemInfoWindowClickListener
     {
-        private Map map;
+        private ClusteredMap map;
         private ClusterManager clusterManager;
         private ClusterLogic logic;
 
-        public ClusterLogicHandler(Map map, ClusterManager manager, ClusterLogic logic)
+        public ClusterLogicHandler(ClusteredMap map, ClusterManager manager, ClusterLogic logic)
         {
             this.map = map;
             clusterManager = manager;
@@ -22,7 +22,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android.Cluster
 
         public bool OnClusterClick(ICluster cluster)
         {
-            //Toast.MakeText(XForms.Context, string.Format("{0} items in cluster", cluster.Items.Count), ToastLength.Short).Show();
+            map.SendClusterClicked(cluster.Items.Count);
             return false;
         }
 
