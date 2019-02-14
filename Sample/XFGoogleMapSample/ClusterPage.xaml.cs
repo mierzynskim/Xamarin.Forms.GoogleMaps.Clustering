@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
+using Xamarin.Forms.GoogleMaps.Clustering;
 
 namespace XFGoogleMapSample
 {
@@ -33,10 +34,16 @@ namespace XFGoogleMapSample
             }
 
             Map.PinClicked += MapOnPinClicked;
+            Map.ClusterClicked += MapOnClusterClicked;
             Map.InfoWindowClicked += MapOnInfoWindowClicked;
             Map.InfoWindowLongClicked += MapOnInfoWindowLongClicked;
 
             this.Map.Cluster();
+        }
+
+        private async void MapOnClusterClicked(object sender, ClusterClickedEventArgs e)
+        {
+            await DisplayAlert("Cluster clicked", $"{e.ItemsCount} pins", "Cancel");
         }
 
         private async void MapOnPinClicked(object sender, PinClickedEventArgs e)

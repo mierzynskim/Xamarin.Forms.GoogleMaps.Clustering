@@ -58,7 +58,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             base.Register(oldNativeMap, oldMap, newNativeMap, newMap);
 
             clusterManager = new ClusterManager(context, NativeMap);
-            clusterHandler = new ClusterLogicHandler(Map, clusterManager, this);
+            clusterHandler = new ClusterLogicHandler(ClusteredMap, clusterManager, this);
 
             switch (ClusteredMap.ClusterOptions.Algorithm)
             {
