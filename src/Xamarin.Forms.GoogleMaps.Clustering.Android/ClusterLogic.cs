@@ -154,16 +154,22 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             {
                 marker.Visible = false; 
                 TransformXamarinViewToAndroidBitmap(outerItem, marker);
+                return marker;
             }
             else
             {
                 marker.Visible = outerItem.IsVisible;
             }
 
+            AddMarker(outerItem, marker);
+            return marker;
+        }
+
+        private void AddMarker(Pin outerItem, ClusteredMarker marker)
+        {
             outerItem.NativeObject = marker;
             onMarkerCreated(outerItem, marker);
             clusterManager.AddItem(marker);
-            return marker;
         }
 
         protected override ClusteredMarker DeleteNativeItem(Pin outerItem)
@@ -283,6 +289,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
                 nativeItem.AnchorX = (float) iconView.AnchorX;
                 nativeItem.AnchorY = (float)iconView.AnchorY;
                 nativeItem.Visible = true;
+                if (outerItem.NativeObject == null)
+                    AddMarker(outerItem, nativeItem);
             }
         }
 
