@@ -3,8 +3,13 @@
 	<metadata minClientVersion="2.8.3">
 		<id>Xamarin.Forms.GoogleMaps.Clustering</id>
 		<title>Xamarin.Forms.GoogleMaps.Clustering</title>
-		<version>0.1</version>
+		<version>$version$</version>
 		<releaseNotes>
+# 0.2
+
+* Added ClusterClicked event
+* Prevent marker rendering until custom view is ready on Android
+* Removed a hack that disallowed to get info about clicked marker without a label
 
 # 0.1
 
