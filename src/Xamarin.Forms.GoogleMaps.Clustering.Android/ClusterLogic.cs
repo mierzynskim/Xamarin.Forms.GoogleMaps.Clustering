@@ -9,6 +9,7 @@ using Android.Widget;
 using Com.Google.Maps.Android.Clustering;
 using Com.Google.Maps.Android.Clustering.Algo;
 using Xamarin.Forms.GoogleMaps.Android;
+using Xamarin.Forms.GoogleMaps.Android.Extensions;
 using Xamarin.Forms.GoogleMaps.Android.Factories;
 using Xamarin.Forms.GoogleMaps.Clustering.Android.Cluster;
 using Xamarin.Forms.GoogleMaps.Logics;
@@ -34,6 +35,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
         private readonly Action<Pin, ClusteredMarker> onMarkerDeleted;
 
         private global::Android.Gms.Maps.Model.CameraPosition previousCameraPostion;
+        private XamarinClusterRenderer clusterRenderer;
 
         public ClusteredMap ClusteredMap => (ClusteredMap) Map;
 
@@ -83,11 +85,15 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             NativeMap.CameraIdle += NativeMapOnCameraIdle;
             NativeMap.SetOnMarkerClickListener(clusterManager);
             NativeMap.SetOnInfoWindowClickListener(clusterManager);
+            newNativeMap.MarkerDragStart += OnMarkerDragStart;
+            newNativeMap.MarkerDragEnd += OnMarkerDragEnd;
+            newNativeMap.MarkerDrag += OnMarkerDrag;
 
-            clusterManager.Renderer = new XamarinClusterRenderer(context,
+            clusterRenderer = new XamarinClusterRenderer(context,
                 ClusteredMap,
                 NativeMap,
                 clusterManager);
+            clusterManager.Renderer = clusterRenderer;
 
             clusterManager.SetOnClusterClickListener(clusterHandler);
             clusterManager.SetOnClusterInfoWindowClickListener(clusterHandler);
@@ -112,6 +118,9 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
                 NativeMap.CameraIdle -= NativeMapOnCameraIdle;
                 NativeMap.SetOnMarkerClickListener(null);
                 NativeMap.SetOnInfoWindowClickListener(null);
+                nativeMap.MarkerDrag -= OnMarkerDrag;
+                nativeMap.MarkerDragEnd -= OnMarkerDragEnd;
+                nativeMap.MarkerDragStart -= OnMarkerDragStart;
 
                 clusterHandler.Dispose();
                 clusterManager.Dispose();
@@ -339,6 +348,42 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
         protected override void OnUpdateTransparency(Pin outerItem, ClusteredMarker nativeItem)
         {
             nativeItem.Alpha = 1f - outerItem.Transparency;
+        }
+        
+        private void OnMarkerDragStart(object sender, GoogleMap.MarkerDragStartEventArgs e)
+        {
+            var clusterItem = clusterRenderer.GetClusterItem(e.Marker);
+            draggingPin = LookupPin((ClusteredMarker) clusterItem);
+
+            if (draggingPin == null) return;
+            UpdatePositionWithoutMove(draggingPin, e.Marker.Position.ToPosition());
+            Map.SendPinDragStart(draggingPin);
+        }
+
+        private void OnMarkerDrag(object sender, GoogleMap.MarkerDragEventArgs e)
+        {
+            if (draggingPin == null) return;
+            UpdatePositionWithoutMove(draggingPin, e.Marker.Position.ToPosition());
+            Map.SendPinDragging(draggingPin);
+        }
+
+        private void OnMarkerDragEnd(object sender, GoogleMap.MarkerDragEndEventArgs e)
+        {
+            if (draggingPin != null)
+            {
+                UpdatePositionWithoutMove(draggingPin, e.Marker.Position.ToPosition());
+                RefreshClusterItem();
+                Map.SendPinDragEnd(draggingPin);
+                draggingPin = null;
+            }
+            withoutUpdateNative = false;
+        }
+
+        private void RefreshClusterItem()
+        {
+            clusterManager.RemoveItem((Java.Lang.Object) draggingPin.NativeObject);
+            clusterManager.AddItem(CreateNativeItem(draggingPin));
+            clusterManager.Cluster();
         }
     }
 }
