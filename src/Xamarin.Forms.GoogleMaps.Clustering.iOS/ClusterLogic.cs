@@ -254,9 +254,17 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             if (draggingPin != null)
             {
                 UpdatePositionWithoutMove(draggingPin, e.Marker.Position.ToPosition());
+                RefreshClusterItem();
                 Map.SendPinDragEnd(draggingPin);
                 draggingPin = null;
             }
+        }
+
+        private void RefreshClusterItem()
+        {
+            clusterManager.RemoveItem((IGMUClusterItem) draggingPin.NativeObject);
+            clusterManager.AddItem(CreateNativeItem(draggingPin));
+            clusterManager.Cluster();
         }
 
         private void DraggingMarker(object sender, GMSMarkerEventEventArgs e)
