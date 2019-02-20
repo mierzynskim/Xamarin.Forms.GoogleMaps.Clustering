@@ -371,15 +371,19 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
         {
             if (draggingPin != null)
             {
-                var clusterItem = clusterRenderer.GetClusterItem(e.Marker);
                 UpdatePositionWithoutMove(draggingPin, e.Marker.Position.ToPosition());
-                clusterManager.RemoveItem(clusterItem);
-                clusterManager.AddItem(CreateNativeItem(draggingPin));
-                clusterManager.Cluster();
+                RefreshClusterItem();
                 Map.SendPinDragEnd(draggingPin);
                 draggingPin = null;
             }
             withoutUpdateNative = false;
+        }
+
+        private void RefreshClusterItem()
+        {
+            clusterManager.RemoveItem((Java.Lang.Object) draggingPin.NativeObject);
+            clusterManager.AddItem(CreateNativeItem(draggingPin));
+            clusterManager.Cluster();
         }
     }
 }
