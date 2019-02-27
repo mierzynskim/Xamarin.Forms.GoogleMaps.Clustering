@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -94,8 +95,6 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
                 NativeMap,
                 clusterManager);
             clusterManager.Renderer = clusterRenderer;
-            ClusteredMap.OnMarkerUpdate =
-                pin => clusterRenderer.SetUpdateMarker((ClusteredMarker) pin.NativeObject);
 
             clusterManager.SetOnClusterClickListener(clusterHandler);
             clusterManager.SetOnClusterInfoWindowClickListener(clusterHandler);
@@ -199,6 +198,25 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             return marker;
         }
 
+        protected override void AddItems(IList newItems)
+        {
+            base.AddItems(newItems);
+            clusterManager.Cluster();
+        }
+
+        protected override void RemoveItems(IList oldItems)
+        {
+            base.RemoveItems(oldItems);
+            clusterManager.Cluster();
+        }
+
+        protected override void OnItemPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            base.OnItemPropertyChanged(sender, e);
+            if (e.PropertyName != Pin.PositionProperty.PropertyName)
+                clusterRenderer.SetUpdateMarker((sender as Pin).NativeObject as ClusteredMarker);
+        }
+        
         public Pin LookupPin(ClusteredMarker marker)
         {
             return GetItems(Map).FirstOrDefault(outerItem => ((ClusteredMarker)outerItem.NativeObject).Id == marker.Id);
@@ -298,7 +316,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
                 otherView.AddView(nativeView);
                 nativeItem.Icon = await Utils.ConvertViewToBitmapDescriptor(otherView);
                 nativeItem.AnchorX = (float) iconView.AnchorX;
-                nativeItem.AnchorY = (float)iconView.AnchorY;
+                nativeItem.AnchorY = (float) iconView.AnchorY;
                 nativeItem.Visible = true;
                 if (outerItem.NativeObject == null)
                     AddMarker(outerItem, nativeItem);
