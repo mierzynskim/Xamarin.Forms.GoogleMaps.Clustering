@@ -94,6 +94,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
                 NativeMap,
                 clusterManager);
             clusterManager.Renderer = clusterRenderer;
+            ClusteredMap.OnMarkerUpdate =
+                pin => clusterRenderer.SetUpdateMarker((ClusteredMarker) pin.NativeObject);
 
             clusterManager.SetOnClusterClickListener(clusterHandler);
             clusterManager.SetOnClusterInfoWindowClickListener(clusterHandler);

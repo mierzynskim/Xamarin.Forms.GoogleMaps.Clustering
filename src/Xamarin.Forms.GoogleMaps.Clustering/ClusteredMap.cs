@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace Xamarin.Forms.GoogleMaps.Clustering
 {
@@ -16,12 +17,33 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
         public event EventHandler<ClusterClickedEventArgs> ClusterClicked;
         
         internal Action OnCluster { get; set; }
+        internal Action<Pin> OnMarkerUpdate { get; set; }
 
         internal bool PendingClusterRequest { get; set; }
 
         public ClusteredMap()
         {
             ClusterOptions = new ClusterOptions();
+            _clusteredPins.CollectionChanged += (sender, args) =>
+            {
+                if (args.OldItems != null)
+                {
+                    foreach (INotifyPropertyChanged item in args.OldItems)
+                        item.PropertyChanged -= MarkerPropertyChanged;
+                }
+                
+                if (args.NewItems != null)
+                {
+                    foreach (INotifyPropertyChanged item in args.NewItems)
+                        item.PropertyChanged += MarkerPropertyChanged;
+                }
+            };
+        }
+        
+        private void MarkerPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName != Pin.PositionProperty.PropertyName)
+                OnMarkerUpdate?.Invoke((Pin) sender);
         }
         
         public ClusterOptions ClusterOptions
