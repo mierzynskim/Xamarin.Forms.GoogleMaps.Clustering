@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -148,6 +149,25 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             onMarkerDeleted(outerItem, nativeMarker);
 
             return nativeMarker;
+        }
+
+        protected override void AddItems(IList newItems)
+        {
+            base.AddItems(newItems);
+            clusterManager.Cluster();
+        }
+
+        protected override void RemoveItems(IList oldItems)
+        {
+            base.RemoveItems(oldItems);
+            clusterManager.Cluster();
+        }
+        
+        protected override void OnItemPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            base.OnItemPropertyChanged(sender, e);
+            if (e.PropertyName != Pin.PositionProperty.PropertyName)
+                clusterManager.Cluster();
         }
 
         internal override void OnMapPropertyChanged(PropertyChangedEventArgs e)

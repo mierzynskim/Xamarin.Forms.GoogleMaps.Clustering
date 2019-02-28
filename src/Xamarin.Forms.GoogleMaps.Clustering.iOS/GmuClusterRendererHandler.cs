@@ -30,7 +30,6 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
                 CreateSinglePin(userData, initialPosition) 
                 : CreateGroup(clusterIcon, initialPosition);
 
-            marker.ZIndex = 1;
             marker.Position = initialPosition;
             marker.UserData = userData;
 
@@ -38,7 +37,6 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
 
             if (animated)
                 AnimateMarker(position, marker);
-
             return marker;
         }
 
@@ -47,6 +45,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             var marker = Marker.FromPosition(initialPosition);
             marker.Icon = clusterIcon;
             marker.GroundAnchor = new CGPoint(0.5, 0.5);
+            marker.ZIndex = 1;
             return marker;
         }
 
@@ -61,6 +60,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             marker.Rotation = clusteredMarker.Rotation;
             marker.GroundAnchor = clusteredMarker.GroundAnchor;
             marker.Flat = clusteredMarker.Flat;
+            marker.Opacity = clusteredMarker.Opacity;
+            marker.ZIndex = clusteredMarker.ZIndex;
             return marker;
         }
 
