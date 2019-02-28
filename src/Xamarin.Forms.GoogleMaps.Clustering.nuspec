@@ -54,7 +54,7 @@
 
 		<!--Xamarin.iOS-->
 		<file src="Xamarin.Forms.GoogleMaps.Clustering.iOS\bin\Release\Xamarin.Forms.GoogleMaps.Clustering.iOS.dll" target="lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.Clustering.iOS.dll" />
-		<file src="Xamarin.Forms.GoogleMaps.Clustering.iOS\bin\Release\GoogleMapsUtils.iOS.dll" target="lib\Xamarin.iOS10\GoogleMapsUtils.iOS.dll" />
+		<file src="Xamarin.Forms.GoogleMaps.Clustering.iOS\bin\Release\Xamarin.Google.iOS.Maps.Utility.dll" target="lib\Xamarin.iOS10\Xamarin.Google.iOS.Maps.Utility.dll" />
 		<file src="Xamarin.Forms.GoogleMaps.Clustering\bin\Release\netstandard2.0\Xamarin.Forms.GoogleMaps.Clustering.dll" target="lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.Clustering.dll" />
 
 		<!--Xamarin.iOS main-->
