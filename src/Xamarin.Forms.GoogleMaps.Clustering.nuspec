@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
-	<metadata minClientVersion="2.8.3">
-		<id>Xamarin.Forms.GoogleMaps.Clustering</id>
-		<title>Xamarin.Forms.GoogleMaps.Clustering</title>
-		<version>$version$</version>
-		<releaseNotes>
+    <metadata minClientVersion="2.8.3">
+    <id>Xamarin.Forms.GoogleMaps.Clustering</id>
+    <title>Xamarin.Forms.GoogleMaps.Clustering</title>
+    <version>$version$</version>
+    <releaseNotes>
 # 0.2
 
 * Added ClusterClicked event
@@ -14,17 +14,17 @@
 # 0.1
 
 * Initial beta release. It uses custom fork of Xamarin.Forms.GoogleMaps library until changes are pushed to the main repository. In order to use clustering, please remove Xamarin.Forms.GoogleMaps from your project. 
-		</releaseNotes>
-		<authors>mierzynskim</authors>
-		<copyright>Copyright 2019</copyright>
-		<iconUrl>https://raw.githubusercontent.com/mierzynskim/Xamarin.Forms.GoogleMaps.Clustering/master/logo.png</iconUrl>
+    </releaseNotes>
+    <authors>mierzynskim</authors>
+    <copyright>Copyright 2019</copyright>
+    <iconUrl>https://raw.githubusercontent.com/mierzynskim/Xamarin.Forms.GoogleMaps.Clustering/master/logo.png</iconUrl>
     <licenseUrl>https://github.com/mierzynskim/Xamarin.Forms.GoogleMaps.Clustering/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/mierzynskim/Xamarin.Forms.GoogleMaps.Clustering</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>A map library that brings support for clustering for Xamarin.Forms.GoogleMaps.</description>
-		<summary>A map library that brings support for clustering for Xamarin.Forms.GoogleMaps.</summary>
-		<tags>xamarin forms maps xamarinforms xamarinformsmaps xamarin.forms.maps xamarinformsgooglemaps xamarin.forms.googlemaps google googlemap</tags>
-	<dependencies>
+    <description>A map library that brings support for clustering for Xamarin.Forms.GoogleMaps.</description>
+    <summary>A map library that brings support for clustering for Xamarin.Forms.GoogleMaps.</summary>
+    <tags>xamarin forms maps xamarinforms xamarinformsmaps xamarin.forms.maps xamarinformsgooglemaps xamarin.forms.googlemaps google googlemap</tags>
+    <dependencies>
       <group>
         <dependency id="Xamarin.Forms" version="3.0.0.482510" />
       </group>
@@ -34,32 +34,31 @@
       </group>
       <group targetFramework="Xamarin.iOS10">
         <dependency id="Xamarin.Google.iOS.Maps" version="2.5.0"/>
-		<dependency id="Xamarin.Google.iOS.Maps.Utility" version="2.1.1-pre2"/>
+          <dependency id="Xamarin.Google.iOS.Maps.Utility" version="2.1.1-pre2"/>
       </group>
-	</dependencies>
-	</metadata>
-	<files>
-		<!--Core main-->
-		<file src="Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\bin\Release\netstandard2.0\Xamarin.Forms.GoogleMaps.dll" target="lib\netstandard2.0" />
-		<!--Core-->
-		<file src="Xamarin.Forms.GoogleMaps.Clustering\bin\Release\netstandard2.0\Xamarin.Forms.GoogleMaps.Clustering.dll" target="lib\netstandard2.0" />
+    </dependencies>
+    </metadata>
+    <files>
+        <!--Core main-->
+        <file src="Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\bin\Release\netstandard2.0\Xamarin.Forms.GoogleMaps.dll" target="lib\netstandard2.0" />
+        <!--Core-->
+        <file src="Xamarin.Forms.GoogleMaps.Clustering\bin\Release\netstandard2.0\Xamarin.Forms.GoogleMaps.Clustering.dll" target="lib\netstandard2.0" />
 
-    <!--Xamarin.Android main-->
-		<file src="Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps.Android\bin\Release\Xamarin.Forms.GoogleMaps.Android.dll" target="lib\MonoAndroid70\Xamarin.Forms.GoogleMaps.Android.dll" />
-		<file src="Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\bin\Release\netstandard2.0\Xamarin.Forms.GoogleMaps.dll" target="lib\MonoAndroid70\Xamarin.Forms.GoogleMaps.dll" />
+        <!--Xamarin.Android main-->
+        <file src="Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps.Android\bin\Release\Xamarin.Forms.GoogleMaps.Android.dll" target="lib\MonoAndroid70\Xamarin.Forms.GoogleMaps.Android.dll" />
+        <file src="Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\bin\Release\netstandard2.0\Xamarin.Forms.GoogleMaps.dll" target="lib\MonoAndroid70\Xamarin.Forms.GoogleMaps.dll" />
     
-		<!--Xamarin.Android-->
-		<file src="Xamarin.Forms.GoogleMaps.Android.Utils\bin\Release\GoogleMapsUtility.dll" target="lib\MonoAndroid70\GoogleMapsUtility.dll" />
-		<file src="Xamarin.Forms.GoogleMaps.Clustering.Android\bin\Release\Xamarin.Forms.GoogleMaps.Clustering.Android.dll" target="lib\MonoAndroid70\Xamarin.Forms.GoogleMaps.Clustering.Android.dll" />
-		<file src="Xamarin.Forms.GoogleMaps.Clustering\bin\Release\netstandard2.0\Xamarin.Forms.GoogleMaps.Clustering.dll" target="lib\MonoAndroid70\Xamarin.Forms.GoogleMaps.Clustering.dll" />
+        <!--Xamarin.Android-->
+        <file src="Xamarin.Forms.GoogleMaps.Android.Utils\bin\Release\GoogleMapsUtility.dll" target="lib\MonoAndroid70\GoogleMapsUtility.dll" />
+        <file src="Xamarin.Forms.GoogleMaps.Clustering.Android\bin\Release\Xamarin.Forms.GoogleMaps.Clustering.Android.dll" target="lib\MonoAndroid70\Xamarin.Forms.GoogleMaps.Clustering.Android.dll" />
+        <file src="Xamarin.Forms.GoogleMaps.Clustering\bin\Release\netstandard2.0\Xamarin.Forms.GoogleMaps.Clustering.dll" target="lib\MonoAndroid70\Xamarin.Forms.GoogleMaps.Clustering.dll" />
 
-		<!--Xamarin.iOS-->
-		<file src="Xamarin.Forms.GoogleMaps.Clustering.iOS\bin\Release\Xamarin.Forms.GoogleMaps.Clustering.iOS.dll" target="lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.Clustering.iOS.dll" />
-		<file src="Xamarin.Forms.GoogleMaps.Clustering\bin\Release\netstandard2.0\Xamarin.Forms.GoogleMaps.Clustering.dll" target="lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.Clustering.dll" />
+        <!--Xamarin.iOS-->
+        <file src="Xamarin.Forms.GoogleMaps.Clustering.iOS\bin\Release\Xamarin.Forms.GoogleMaps.Clustering.iOS.dll" target="lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.Clustering.iOS.dll" />
+        <file src="Xamarin.Forms.GoogleMaps.Clustering\bin\Release\netstandard2.0\Xamarin.Forms.GoogleMaps.Clustering.dll" target="lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.Clustering.dll" />
 
-		<!--Xamarin.iOS main-->
-		<file src="Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps.iOS\bin\Release\Xamarin.Forms.GoogleMaps.iOS.dll" target="lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.iOS.dll" />
-		<file src="Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\bin\Release\netstandard2.0\Xamarin.Forms.GoogleMaps.dll" target="lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.dll" />
-
-	</files>
+        <!--Xamarin.iOS main-->
+        <file src="Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps.iOS\bin\Release\Xamarin.Forms.GoogleMaps.iOS.dll" target="lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.iOS.dll" />
+        <file src="Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\bin\Release\netstandard2.0\Xamarin.Forms.GoogleMaps.dll" target="lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.dll" />
+    </files>
 </package>
