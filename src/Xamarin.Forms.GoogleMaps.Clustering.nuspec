@@ -34,6 +34,7 @@
       </group>
       <group targetFramework="Xamarin.iOS10">
         <dependency id="Xamarin.Google.iOS.Maps" version="2.5.0"/>
+		<dependency id="Xamarin.Google.iOS.Maps.Utility" version="2.1.1-pre2"/>
       </group>
 	</dependencies>
 	</metadata>
@@ -54,7 +55,6 @@
 
 		<!--Xamarin.iOS-->
 		<file src="Xamarin.Forms.GoogleMaps.Clustering.iOS\bin\Release\Xamarin.Forms.GoogleMaps.Clustering.iOS.dll" target="lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.Clustering.iOS.dll" />
-		<file src="Xamarin.Forms.GoogleMaps.Clustering.iOS\bin\Release\Xamarin.Google.iOS.Maps.Utility.dll" target="lib\Xamarin.iOS10\Xamarin.Google.iOS.Maps.Utility.dll" />
 		<file src="Xamarin.Forms.GoogleMaps.Clustering\bin\Release\netstandard2.0\Xamarin.Forms.GoogleMaps.Clustering.dll" target="lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.Clustering.dll" />
 
 		<!--Xamarin.iOS main-->
