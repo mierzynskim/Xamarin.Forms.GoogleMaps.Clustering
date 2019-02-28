@@ -1,24 +1,42 @@
+using System.Linq;
 using CoreAnimation;
 using CoreGraphics;
 using CoreLocation;
 using Foundation;
-using GMCluster;
 using Google.Maps;
+using Google.Maps.Utility;
 using UIKit;
 
 namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
 {
-    internal class GmuClusterRendererHandler : GMUDefaultClusterRenderer
+    internal class ClusterRendererHandler : DefaultClusterRenderer
     {
         private readonly MapView nativeMap;
-        private const double KGmuAnimationDuration = 0.5; 
+        private const double AnimationDuration = 0.5; 
 
-        public GmuClusterRendererHandler(MapView mapView, IGMUClusterIconGenerator iconGenerator)
+        public ClusterRendererHandler(MapView mapView, ClusterIconGenerator iconGenerator)
             : base(mapView, iconGenerator)
         {
             nativeMap = mapView;
         }
 
+        public Marker GetMarker(ClusteredMarker clusteredMarker) =>
+            Markers?.FirstOrDefault(m => ReferenceEquals(m.UserData as ClusteredMarker, clusteredMarker));
+        
+        public void SetUpdateMarker(ClusteredMarker clusteredMarker)
+        {
+            var marker = GetMarker(clusteredMarker);
+            marker.Position = new CLLocationCoordinate2D(clusteredMarker.Position.Latitude, clusteredMarker.Position.Longitude);
+            marker.Title = clusteredMarker.Title;
+            marker.Snippet = clusteredMarker.Snippet;
+            marker.Draggable = clusteredMarker.Draggable;
+            marker.Rotation = clusteredMarker.Rotation;
+            marker.GroundAnchor = clusteredMarker.GroundAnchor;
+            marker.InfoWindowAnchor = clusteredMarker.InfoWindowAnchor;
+            marker.Flat = clusteredMarker.Flat;
+            marker.Opacity = 1f - clusteredMarker.Opacity;
+            marker.Icon = clusteredMarker.Icon;
+        }
 
         [Export("markerWithPosition:from:userData:clusterIcon:animated:")]
         public Marker MarkerWithPosition(CLLocationCoordinate2D position, CLLocationCoordinate2D from,
@@ -59,6 +77,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             marker.Draggable = clusteredMarker.Draggable;
             marker.Rotation = clusteredMarker.Rotation;
             marker.GroundAnchor = clusteredMarker.GroundAnchor;
+            marker.InfoWindowAnchor = clusteredMarker.InfoWindowAnchor;
             marker.Flat = clusteredMarker.Flat;
             marker.Opacity = clusteredMarker.Opacity;
             marker.ZIndex = clusteredMarker.ZIndex;
@@ -68,7 +87,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
         private static void AnimateMarker(CLLocationCoordinate2D position, Marker marker)
         {
             CATransaction.Begin();
-            CATransaction.AnimationDuration = KGmuAnimationDuration;
+            CATransaction.AnimationDuration = AnimationDuration;
             marker.Layer.Latitude = position.Latitude;
             marker.Layer.Longitude = position.Longitude;
             CATransaction.Commit();

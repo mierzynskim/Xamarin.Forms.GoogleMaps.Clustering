@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using CoreGraphics;
-using GMCluster;
 using Google.Maps;
+using Google.Maps.Utility;
 using UIKit;
 using Xamarin.Forms.GoogleMaps.iOS.Extensions;
 using Xamarin.Forms.GoogleMaps.iOS.Factories;
@@ -13,23 +13,24 @@ using Xamarin.Forms.GoogleMaps.Logics;
 
 namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
 {
-    internal partial class ClusterLogic : DefaultPinLogic<ClusteredMarker, MapView>
+    internal class ClusterLogic : DefaultPinLogic<ClusteredMarker, MapView>
     {
         protected override IList<Pin> GetItems(Map map) => (map as ClusteredMap)?.ClusteredPins;
 
         private ClusteredMap ClusteredMap => (ClusteredMap) Map;
 
-        private GMUClusterManager clusterManager;
+        private ClusterManager clusterManager;
 
         private bool onMarkerEvent;
         private Pin draggingPin;
-        private volatile bool withoutUpdateNative = false;
+        private volatile bool withoutUpdateNative;
 
         private readonly Action<Pin, Marker> onMarkerCreating;
         private readonly Action<Pin, Marker> onMarkerCreated;
         private readonly Action<Pin, Marker> onMarkerDeleting;
         private readonly Action<Pin, Marker> onMarkerDeleted;
         private readonly IImageFactory imageFactory;
+        private ClusterRendererHandler clusterRenderer;
 
         public ClusterLogic(
             IImageFactory imageFactory,
@@ -50,25 +51,25 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             base.Register(oldNativeMap, oldMap, newNativeMap, newMap);
 
             var clusteredNewMap = (ClusteredMap) newMap;
-            IGMUClusterAlgorithm algorithm;
+            IClusterAlgorithm algorithm;
             switch (clusteredNewMap.ClusterOptions.Algorithm)
             {
                 case ClusterAlgorithm.GridBased:
-                    algorithm = new GMUGridBasedClusterAlgorithm();
+                    algorithm = new GridBasedClusterAlgorithm();
                     break;
                 case ClusterAlgorithm.VisibleNonHierarchicalDistanceBased:
                     throw new NotSupportedException("VisibleNonHierarchicalDistanceBased is only supported on Android");
                     break;
                 default:
-                    algorithm = new GMUNonHierarchicalDistanceBasedAlgorithm();
+                    algorithm = new NonHierarchicalDistanceBasedAlgorithm();
                     break;
             }
 
-            var iconGenerator = new GmuClusterIconGeneratorHandler(ClusteredMap.ClusterOptions);
+            var iconGenerator = new ClusterIconGeneratorHandler(ClusteredMap.ClusterOptions);
 
-            var clusterRenderer = new GmuClusterRendererHandler(newNativeMap, iconGenerator);
+            clusterRenderer = new ClusterRendererHandler(newNativeMap, iconGenerator);
 
-            clusterManager = new GMUClusterManager(newNativeMap, algorithm, clusterRenderer);
+            clusterManager = new ClusterManager(newNativeMap, algorithm, clusterRenderer);
 
             ClusteredMap.OnCluster = HandleClusterRequest;
 
@@ -109,6 +110,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
                 Draggable = outerItem.IsDraggable,
                 Rotation = outerItem.Rotation,
                 GroundAnchor = new CGPoint(outerItem.Anchor.X, outerItem.Anchor.Y),
+                InfoWindowAnchor = new CGPoint(outerItem.InfoWindowAnchor.X, outerItem.InfoWindowAnchor.Y),
                 Flat = outerItem.Flat,
                 ZIndex = outerItem.ZIndex,
                 Opacity = 1f - outerItem.Transparency
@@ -167,7 +169,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
         {
             base.OnItemPropertyChanged(sender, e);
             if (e.PropertyName != Pin.PositionProperty.PropertyName)
-                clusterManager.Cluster();
+                clusterRenderer.SetUpdateMarker((ClusteredMarker) (sender as Pin)?.NativeObject);
         }
 
         internal override void OnMapPropertyChanged(PropertyChangedEventArgs e)
@@ -221,7 +223,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
 
         private bool HandleGmsTappedMarker(MapView mapView, Marker marker)
         {
-            if (marker?.UserData is IGMUCluster cluster)
+            if (marker?.UserData is ICluster cluster)
                 return ClusteredMap.SendClusterClicked((int) cluster.Count);
             var targetPin = LookupPin(marker);
 
@@ -282,8 +284,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
 
         private void RefreshClusterItem()
         {
-            clusterManager.RemoveItem((IGMUClusterItem) draggingPin.NativeObject);
-            clusterManager.AddItem(CreateNativeItem(draggingPin));
+            ClusteredMap.ClusteredPins.Remove(draggingPin);
+            ClusteredMap.ClusteredPins.Add(draggingPin);
             clusterManager.Cluster();
         }
 

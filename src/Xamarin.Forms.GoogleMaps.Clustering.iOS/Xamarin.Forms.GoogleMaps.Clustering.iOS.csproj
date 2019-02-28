@@ -37,9 +37,6 @@
       <HintPath>$(SolutionDir)\packages\Xamarin.Google.iOS.Maps.2.7.0\lib\Xamarin.iOS10\Google.Maps.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="GoogleMapsUtils.iOS, Version=1.0.6295.21800, Culture=neutral, PublicKeyToken=null">
-      <HintPath>Lib\GoogleMapsUtils.iOS.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -59,6 +56,9 @@
       <HintPath>$(SolutionDir)\packages\Xamarin.Forms.3.0.0.482510\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Xamarin.Google.iOS.Maps.Utility, Version=1.0.6998.21917, Culture=neutral, PublicKeyToken=null">
+      <HintPath>Lib\Xamarin.Google.iOS.Maps.Utility.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
@@ -68,8 +68,8 @@
     <Compile Include="ClusteredMarker.cs" />
     <Compile Include="ClusterLogic.cs" />
     <Compile Include="ClusteredMapRenderer.cs" />
-    <Compile Include="GmuClusterIconGeneratorHandler.cs" />
-    <Compile Include="GmuClusterRendererHandler.cs" />
+    <Compile Include="ClusterIconGeneratorHandler.cs" />
+    <Compile Include="ClusterRendererHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
