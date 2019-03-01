@@ -9,21 +9,22 @@ namespace XFGoogleMapSample
 {
     public partial class ClusterPage
     {
-        private const int ClusterItemsCount = 1000;// 10000;
+        private const int ClusterItemsCount = 1000;
         private const double Extent = 0.2;
-        private Position _currentPosition = new Position(52.225665764, 21.003833318);
-        private readonly Random _random = new Random();
+        
+        private readonly Position currentPosition = new Position(52.225665764, 21.003833318);
+        private readonly Random random = new Random();
 
         public ClusterPage()
         {
             InitializeComponent();
 
-            this.Map.MoveToRegion(MapSpan.FromCenterAndRadius(this._currentPosition, Distance.FromMeters(100)));
+            Map.MoveToRegion(MapSpan.FromCenterAndRadius(currentPosition, Distance.FromMeters(100)));
             
             for (var i = 0; i <= ClusterItemsCount; i++)
             {
-                var lat = this._currentPosition.Latitude + Extent * GetRandomNumber(-1.0, 1.0);
-                var lng = this._currentPosition.Longitude + Extent * GetRandomNumber(-1.0, 1.0);
+                var lat = currentPosition.Latitude + Extent * GetRandomNumber(-1.0, 1.0);
+                var lng = currentPosition.Longitude + Extent * GetRandomNumber(-1.0, 1.0);
 
                 this.Map.ClusteredPins.Add(new Pin()
                 {
@@ -38,7 +39,7 @@ namespace XFGoogleMapSample
             Map.InfoWindowClicked += MapOnInfoWindowClicked;
             Map.InfoWindowLongClicked += MapOnInfoWindowLongClicked;
 
-            this.Map.Cluster();
+            Map.Cluster();
         }
 
         private async void MapOnClusterClicked(object sender, ClusterClickedEventArgs e)
@@ -63,7 +64,7 @@ namespace XFGoogleMapSample
 
         private double GetRandomNumber(double minimum, double maximum)
         {
-            return _random.NextDouble() * (maximum - minimum) + minimum;
+            return random.NextDouble() * (maximum - minimum) + minimum;
         }
     }
 }

@@ -56,11 +56,11 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
 
         public ClusterOptions()
         {
-            this.Algorithm = ClusterAlgorithm.NonHierarchicalDistanceBased;
-            this.EnableBuckets = true;
-            this.RendererImage = null;
-            this.RendererCallback = null;
-            this.ResetBuckets();
+            Algorithm = ClusterAlgorithm.NonHierarchicalDistanceBased;
+            EnableBuckets = true;
+            RendererImage = null;
+            RendererCallback = null;
+            ResetBuckets();
         }
 
         /// <summary>
@@ -73,8 +73,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
             if (buckets.Length != colors.Length)
                 throw new ArgumentException("The buckets length must be equal to the colors length.");
 
-            this.Buckets = buckets;
-            this.BucketColors = colors;
+            Buckets = buckets;
+            BucketColors = colors;
         }
 
         /// <summary>
@@ -83,8 +83,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
         /// <param name="buckets">Buckets.</param>
         public void SetBuckets(Dictionary<int, Color> buckets)
         {
-            this.Buckets = buckets.Keys.ToArray();
-            this.BucketColors = buckets.Values.ToArray();
+            Buckets = buckets.Keys.ToArray();
+            BucketColors = buckets.Values.ToArray();
         }
 
         /// <summary>
@@ -92,8 +92,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
         /// </summary>
         public void ResetBuckets()
         {
-            this.Buckets = new int[] { 10, 50, 100, 200, 1000 };
-            this.BucketColors = new Color[]
+            Buckets = new int[] { 10, 50, 100, 200, 1000 };
+            BucketColors = new Color[]
             {
                 Color.FromHex("#0099cc"),
                 Color.FromHex("#669900"),
@@ -102,9 +102,9 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
                 Color.FromHex("#9933cc")
             };
 
-            this.RendererTextColor = Color.White;
-            this.RendererImage = null;
-            this.RendererCallback = null;
+            RendererTextColor = Color.White;
+            RendererImage = null;
+            RendererCallback = null;
         }
 
         /// <summary>
@@ -112,9 +112,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
         /// </summary>
         public void SetRenderUsingColors()
         {
-            this.SetRenderUsingColors(Color.White);
+            SetRenderUsingColors(Color.White);
         }
-
 
         /// <summary>
         /// Sets the rendering method to use default colors.
@@ -122,9 +121,9 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
         /// <param name="textColor">The text color.</param>
         public void SetRenderUsingColors(Color textColor)
         {
-            this.RendererTextColor = textColor;
-            this.RendererImage = null;
-            this.RendererCallback = null;
+            RendererTextColor = textColor;
+            RendererImage = null;
+            RendererCallback = null;
         }
 
         /// <summary>
@@ -133,7 +132,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
         /// <param name="image">The BitmapDescriptor image. The number of items will be drawn automatically on top of this image.</param>
         public void SetRenderUsingImage(BitmapDescriptor image)
         {
-            this.SetRenderUsingImage(image, Color.White);
+            SetRenderUsingImage(image, Color.White);
         }
 
         /// <summary>
@@ -143,9 +142,9 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
         /// <param name="textColor">The text color.</param>
         public void SetRenderUsingImage(BitmapDescriptor image, Color textColor)
         {
-            this.RendererTextColor = textColor;
-            this.RendererImage = image;
-            this.RendererCallback = null;
+            RendererTextColor = textColor;
+            RendererImage = image;
+            RendererCallback = null;
         }
 
 
@@ -155,8 +154,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
         /// <param name="callback">A callback which recieves the value to display (a string or bucket value) and renders it into a BitmapDescriptor.</param>
         public void SetRenderUsingCustomAction(Func<string, BitmapDescriptor> callback)
         {
-            this.RendererImage = null;
-            this.RendererCallback = callback;
+            RendererImage = null;
+            RendererCallback = callback;
         }
     }
 }

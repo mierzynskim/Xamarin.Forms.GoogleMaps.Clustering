@@ -10,14 +10,14 @@ using NativeBitmapDescriptor = Android.Gms.Maps.Model.BitmapDescriptor;
 
 namespace Xamarin.Forms.GoogleMaps.Clustering.Android.Cluster
 {
-    public class XamarinClusterRenderer : DefaultClusterRenderer
+    public class ClusterRenderer : DefaultClusterRenderer
     {
         private readonly ClusteredMap map;
         private readonly SparseArray<NativeBitmapDescriptor> standardCache;
         private readonly SparseArray<NativeBitmapDescriptor> icons;
         private readonly float density;
 
-        public XamarinClusterRenderer(Context context,
+        public ClusterRenderer(Context context,
             ClusteredMap map,
             GoogleMap nativeMap,
             ClusterManager manager)

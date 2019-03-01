@@ -34,7 +34,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
         
         public void Cluster()
         {
-            this.SendCluster();
+            SendCluster();
         }
         
         private void SendCluster()

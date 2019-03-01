@@ -51,24 +51,10 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             base.Register(oldNativeMap, oldMap, newNativeMap, newMap);
 
             var clusteredNewMap = (ClusteredMap) newMap;
-            IClusterAlgorithm algorithm;
-            switch (clusteredNewMap.ClusterOptions.Algorithm)
-            {
-                case ClusterAlgorithm.GridBased:
-                    algorithm = new GridBasedClusterAlgorithm();
-                    break;
-                case ClusterAlgorithm.VisibleNonHierarchicalDistanceBased:
-                    throw new NotSupportedException("VisibleNonHierarchicalDistanceBased is only supported on Android");
-                    break;
-                default:
-                    algorithm = new NonHierarchicalDistanceBasedAlgorithm();
-                    break;
-            }
+            var algorithm = GetClusterAlgorithm(clusteredNewMap);
 
             var iconGenerator = new ClusterIconGeneratorHandler(ClusteredMap.ClusterOptions);
-
             clusterRenderer = new ClusterRendererHandler(newNativeMap, iconGenerator);
-
             clusterManager = new ClusterManager(newNativeMap, algorithm, clusterRenderer);
 
             ClusteredMap.OnCluster = HandleClusterRequest;
@@ -81,6 +67,24 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             newNativeMap.DraggingMarkerStarted += DraggingMarkerStarted;
             newNativeMap.DraggingMarkerEnded += DraggingMarkerEnded;
             newNativeMap.DraggingMarker += DraggingMarker;
+        }
+
+        private static IClusterAlgorithm GetClusterAlgorithm(ClusteredMap clusteredNewMap)
+        {
+            IClusterAlgorithm algorithm;
+            switch (clusteredNewMap.ClusterOptions.Algorithm)
+            {
+                case ClusterAlgorithm.GridBased:
+                    algorithm = new GridBasedClusterAlgorithm();
+                    break;
+                case ClusterAlgorithm.VisibleNonHierarchicalDistanceBased:
+                    throw new NotSupportedException("VisibleNonHierarchicalDistanceBased is only supported on Android");
+                default:
+                    algorithm = new NonHierarchicalDistanceBasedAlgorithm();
+                    break;
+            }
+
+            return algorithm;
         }
 
         internal override void Unregister(MapView nativeMap, Map map)
@@ -320,9 +324,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
         protected override void OnUpdatePosition(Pin outerItem, ClusteredMarker nativeItem)
         {
             if (!withoutUpdateNative)
-            {
                 nativeItem.Position = outerItem.Position.ToCoord();
-            }
         }
 
         protected override void OnUpdateType(Pin outerItem, ClusteredMarker nativeItem)
@@ -332,9 +334,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
         protected override void OnUpdateIcon(Pin outerItem, ClusteredMarker nativeItem)
         {
             if (outerItem.Icon.Type == BitmapDescriptorType.View)
-            {
                 OnUpdateIconView(outerItem, nativeItem);
-            }
             else
             {
                 if (nativeItem?.Icon != null) 
@@ -347,7 +347,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             nativeItem.Draggable = outerItem?.IsDraggable ?? false;
         }
 
-        protected void OnUpdateIconView(Pin outerItem, ClusteredMarker nativeItem)
+        private void OnUpdateIconView(Pin outerItem, ClusteredMarker nativeItem)
         {
             if (outerItem?.Icon?.Type == BitmapDescriptorType.View && outerItem?.Icon?.View != null)
             {
