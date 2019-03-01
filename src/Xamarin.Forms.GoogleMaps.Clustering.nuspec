@@ -5,6 +5,12 @@
     <title>Xamarin.Forms.GoogleMaps.Clustering</title>
     <version>$version$</version>
     <releaseNotes>
+# 0.3
+
+* BREAKING CHANGE: ClusteredPins collection is removed. You should use Pins collection instead.
+* Support for pins collection updates
+* Implemented marker dragging
+
 # 0.2
 
 * Added ClusterClicked event
@@ -34,7 +40,7 @@
       </group>
       <group targetFramework="Xamarin.iOS10">
         <dependency id="Xamarin.Google.iOS.Maps" version="2.5.0"/>
-          <dependency id="Xamarin.Google.iOS.Maps.Utility" version="2.1.1-pre2"/>
+        <dependency id="Xamarin.Google.iOS.Maps.Utility" version="2.1.1-pre2"/>
       </group>
     </dependencies>
     </metadata>
