@@ -11,8 +11,6 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
             typeof(ClusteredMap),
             default(ClusterOptions));
 
-        private readonly ObservableCollection<Pin> _clusteredPins = new ObservableCollection<Pin>();
-        
         public event EventHandler<ClusterClickedEventArgs> ClusterClicked;
         
         internal Action OnCluster { get; set; }
@@ -29,8 +27,6 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
             get => (ClusterOptions)GetValue(ClusterOptionsProperty);
             set => SetValue(ClusterOptionsProperty, value);
         }
-        
-        public IList<Pin> ClusteredPins => _clusteredPins;
         
         public void Cluster()
         {

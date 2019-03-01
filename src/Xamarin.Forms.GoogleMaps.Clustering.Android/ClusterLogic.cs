@@ -19,7 +19,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
 {
     internal class ClusterLogic : DefaultPinLogic<ClusteredMarker, GoogleMap>
     {
-        protected override IList<Pin> GetItems(Map map) => (map as ClusteredMap)?.ClusteredPins;
+        protected override IList<Pin> GetItems(Map map) => Map.Pins;
 
         private volatile bool onMarkerEvent = false;
         private Pin draggingPin;

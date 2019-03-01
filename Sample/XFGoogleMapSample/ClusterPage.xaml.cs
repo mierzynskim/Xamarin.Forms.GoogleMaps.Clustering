@@ -26,7 +26,7 @@ namespace XFGoogleMapSample
                 var lat = currentPosition.Latitude + Extent * GetRandomNumber(-1.0, 1.0);
                 var lng = currentPosition.Longitude + Extent * GetRandomNumber(-1.0, 1.0);
 
-                this.Map.ClusteredPins.Add(new Pin()
+                Map.Pins.Add(new Pin()
                 {
                     Position = new Position(lat, lng),
                     Label = $"Item {i}",

@@ -15,7 +15,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
 {
     internal class ClusterLogic : DefaultPinLogic<ClusteredMarker, MapView>
     {
-        protected override IList<Pin> GetItems(Map map) => (map as ClusteredMap)?.ClusteredPins;
+        protected override IList<Pin> GetItems(Map map) => Map.Pins;
 
         private ClusteredMap ClusteredMap => (ClusteredMap) Map;
 
@@ -288,8 +288,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
 
         private void RefreshClusterItem()
         {
-            ClusteredMap.ClusteredPins.Remove(draggingPin);
-            ClusteredMap.ClusteredPins.Add(draggingPin);
+            ClusteredMap.Pins.Remove(draggingPin);
+            ClusteredMap.Pins.Add(draggingPin);
             clusterManager.Cluster();
         }
 
