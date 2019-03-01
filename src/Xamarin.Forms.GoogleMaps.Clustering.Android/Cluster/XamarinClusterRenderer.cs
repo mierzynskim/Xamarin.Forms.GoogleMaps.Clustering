@@ -28,6 +28,21 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android.Cluster
             icons = new SparseArray<NativeBitmapDescriptor>();
         }
 
+        public void SetUpdateMarker(ClusteredMarker clusteredMarker)
+        {
+            var marker = GetMarker(clusteredMarker);
+            marker.Position = new LatLng(clusteredMarker.Position.Latitude, clusteredMarker.Position.Longitude);
+            marker.Title = clusteredMarker.Title;
+            marker.Snippet = clusteredMarker.Snippet;
+            marker.Draggable = clusteredMarker.Draggable;
+            marker.Rotation = clusteredMarker.Rotation;
+            marker.SetAnchor(clusteredMarker.AnchorX, clusteredMarker.AnchorY);
+            marker.SetInfoWindowAnchor(clusteredMarker.InfoWindowAnchorX, clusteredMarker.InfoWindowAnchorY);
+            marker.Flat = clusteredMarker.Flat;
+            marker.Alpha = 1f - clusteredMarker.Alpha;
+            marker.SetIcon(clusteredMarker.Icon);
+        }
+
         protected override void OnBeforeClusterRendered(ICluster cluster, MarkerOptions options)
         {
             if (map.ClusterOptions.RendererCallback != null)
@@ -99,6 +114,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android.Cluster
                 .SetRotation(clusteredMarker.Rotation)
                 .Anchor(clusteredMarker.AnchorX, clusteredMarker.AnchorY)
                 .InfoWindowAnchor(clusteredMarker.InfoWindowAnchorX, clusteredMarker.InfoWindowAnchorY)
+                .SetAlpha(clusteredMarker.Alpha)
                 .Flat(clusteredMarker.Flat);
 
             if (clusteredMarker.Icon != null)

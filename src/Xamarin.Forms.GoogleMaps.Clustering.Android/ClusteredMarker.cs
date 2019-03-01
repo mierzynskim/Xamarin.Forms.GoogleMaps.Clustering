@@ -53,6 +53,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             InfoWindowAnchorY = (float)outerItem.InfoWindowAnchor.Y;
             Flat = outerItem.Flat;
             Alpha = 1f - outerItem.Transparency;
+            Visible = outerItem.IsVisible;
+            ZIndex = outerItem.ZIndex;
         }
     }
 }
