@@ -39,7 +39,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android.Cluster
             marker.SetAnchor(clusteredMarker.AnchorX, clusteredMarker.AnchorY);
             marker.SetInfoWindowAnchor(clusteredMarker.InfoWindowAnchorX, clusteredMarker.InfoWindowAnchorY);
             marker.Flat = clusteredMarker.Flat;
-            marker.Alpha = 1f - clusteredMarker.Alpha;
+            marker.Alpha = clusteredMarker.Alpha;
             marker.SetIcon(clusteredMarker.Icon);
         }
 
