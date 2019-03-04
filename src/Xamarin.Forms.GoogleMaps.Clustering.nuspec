@@ -5,6 +5,10 @@
     <title>Xamarin.Forms.GoogleMaps.Clustering</title>
     <version>$version$</version>
     <releaseNotes>
+# 0.3.2
+
+* Added missing changes from 0.3.1
+
 # 0.3.1
 
 * Correctly set alpha when updating a marker
