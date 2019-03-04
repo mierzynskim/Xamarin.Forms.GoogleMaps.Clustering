@@ -5,6 +5,10 @@
     <title>Xamarin.Forms.GoogleMaps.Clustering</title>
     <version>$version$</version>
     <releaseNotes>
+# 0.3.1
+
+* Correctly set alpha when updating a marker
+
 # 0.3
 
 * BREAKING CHANGE: ClusteredPins collection is removed. You should use Pins collection instead.
