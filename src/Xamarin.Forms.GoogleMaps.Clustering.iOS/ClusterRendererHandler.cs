@@ -34,7 +34,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             marker.GroundAnchor = clusteredMarker.GroundAnchor;
             marker.InfoWindowAnchor = clusteredMarker.InfoWindowAnchor;
             marker.Flat = clusteredMarker.Flat;
-            marker.Opacity = 1f - clusteredMarker.Opacity;
+            marker.Opacity = clusteredMarker.Opacity;
             marker.Icon = clusteredMarker.Icon;
         }
 
