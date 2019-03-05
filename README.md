@@ -12,6 +12,12 @@ This library brings support for clustering for library [Xamarin.Forms.GoogleMaps
 [assembly: ExportRenderer(typeof(ClusteredMap), typeof(ClusteredMapRenderer))]
 ``` 
 
+## Releases
+
+See [RELEASE_NOTES](RELEASE_NOTES.md).
+
+## Future plans
+
 ## Credits
 Credits to all involved in development, testing and discussion in the [original issue thread](https://github.com/amay077/Xamarin.Forms.GoogleMaps/issues/123). Special thanks to [@YahavGB](https://github.com/YahavGB) who implemented a big part of clustering solution.
 
