@@ -26,6 +26,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
         public void SetUpdateMarker(ClusteredMarker clusteredMarker)
         {
             var marker = GetMarker(clusteredMarker);
+            if (marker == null) return;
             marker.Position = new CLLocationCoordinate2D(clusteredMarker.Position.Latitude, clusteredMarker.Position.Longitude);
             marker.Title = clusteredMarker.Title;
             marker.Snippet = clusteredMarker.Snippet;
