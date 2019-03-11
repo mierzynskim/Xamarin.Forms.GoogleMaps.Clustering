@@ -45,9 +45,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             var buckets = options.Buckets;
 
             while (index + 1 < buckets.Length && buckets[index + 1] <= size)
-            {
                 ++index;
-            }
 
             return index;
         }
@@ -57,9 +55,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             var nsText = new NSString(text);
             var icon = iconCache.ObjectForKey(nsText);
             if (icon != null)
-            {
                 return (UIImage)icon;
-            }
 
             var font = UIFont.BoldSystemFontOfSize(12);
             var size = baseImage.Size;
