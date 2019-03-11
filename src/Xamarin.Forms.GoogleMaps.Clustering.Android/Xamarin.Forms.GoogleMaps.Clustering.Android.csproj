@@ -148,8 +148,8 @@
     <Compile Include="ClusteredMapRenderer.cs" />
     <Compile Include="ClusteredMarker.cs" />
     <Compile Include="ClusterLogic.cs" />
-    <Compile Include="Cluster\ClusterLogicHandler.cs" />
-    <Compile Include="Cluster\ClusterRenderer.cs" />
+    <Compile Include="ClusterLogicHandler.cs" />
+    <Compile Include="ClusterRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

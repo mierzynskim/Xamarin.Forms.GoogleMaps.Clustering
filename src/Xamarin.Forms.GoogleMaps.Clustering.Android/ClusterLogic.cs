@@ -12,7 +12,6 @@ using Com.Google.Maps.Android.Clustering.Algo;
 using Xamarin.Forms.GoogleMaps.Android;
 using Xamarin.Forms.GoogleMaps.Android.Extensions;
 using Xamarin.Forms.GoogleMaps.Android.Factories;
-using Xamarin.Forms.GoogleMaps.Clustering.Android.Cluster;
 using Xamarin.Forms.GoogleMaps.Logics;
 
 namespace Xamarin.Forms.GoogleMaps.Clustering.Android

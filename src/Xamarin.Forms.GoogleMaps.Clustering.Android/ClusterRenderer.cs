@@ -2,14 +2,13 @@
 using Android.Content;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
-using Android.Util;
 using Com.Google.Maps.Android.Clustering;
 using Com.Google.Maps.Android.Clustering.View;
 using Xamarin.Forms.GoogleMaps.Android.Factories;
 using Xamarin.Forms.Platform.Android;
 using NativeBitmapDescriptor = Android.Gms.Maps.Model.BitmapDescriptor;
 
-namespace Xamarin.Forms.GoogleMaps.Clustering.Android.Cluster
+namespace Xamarin.Forms.GoogleMaps.Clustering.Android
 {
     public class ClusterRenderer : DefaultClusterRenderer
     {

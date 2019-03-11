@@ -1,7 +1,6 @@
 ﻿using Com.Google.Maps.Android.Clustering;
-using Xamarin.Forms.GoogleMaps.Logics.Android;
 
-namespace Xamarin.Forms.GoogleMaps.Clustering.Android.Cluster
+namespace Xamarin.Forms.GoogleMaps.Clustering.Android
 {
     internal class ClusterLogicHandler : Java.Lang.Object,
         ClusterManager.IOnClusterClickListener,
