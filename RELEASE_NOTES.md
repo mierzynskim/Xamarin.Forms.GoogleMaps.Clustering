@@ -1,5 +1,10 @@
 Xamarin.Forms.GoogleMaps.Clustering Release Notes
 ----
+# 0.4.0
+* Do not allow to update clustered pin until it's rendered. Fixed crash caused by allowing this.
+* [Android] Fixed icon cache to support setting icons for clusters containing less markers than minimum bucket size
+* [iOS] Changed minimum cluster size to 5 to match Android
+
 # 0.3.2
 
 * Added missing changes from 0.3.1
