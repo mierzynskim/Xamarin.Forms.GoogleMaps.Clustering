@@ -18,11 +18,11 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
         
         public ClusteredMapRenderer(Context context) : base(context)
         {
-            _logics.Remove(_logics.OfType<PinLogic>().First());
+            Logics.Remove(Logics.OfType<PinLogic>().First());
             clusterLogic = new ClusterLogic(context, Config.BitmapDescriptorFactory,
                 OnClusteredMarkerCreating, OnClusteredMarkerCreated, OnClusteredMarkerDeleting,
                 OnClusteredMarkerDeleted);
-            _logics.Add(clusterLogic);
+            Logics.Add(clusterLogic);
         }
 
         protected override void OnMapReady(GoogleMap nativeMap, Map map)

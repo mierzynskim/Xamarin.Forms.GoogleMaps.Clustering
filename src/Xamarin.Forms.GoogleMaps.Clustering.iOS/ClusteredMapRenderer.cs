@@ -8,8 +8,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
     {
         public ClusteredMapRenderer()
         {
-            _logics.Remove(_logics.OfType<PinLogic>().First());
-            _logics.Add(new ClusterLogic(Config.ImageFactory,
+            Logics.Remove(Logics.OfType<PinLogic>().First());
+            Logics.Add(new ClusterLogic(Config.ImageFactory,
                 OnMarkerCreating, OnMarkerCreated, OnMarkerDeleting, OnMarkerDeleted));
         }
     }
