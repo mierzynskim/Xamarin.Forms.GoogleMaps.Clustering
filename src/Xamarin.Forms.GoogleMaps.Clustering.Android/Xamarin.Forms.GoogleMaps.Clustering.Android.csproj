@@ -115,6 +115,14 @@
       <HintPath>..\packages\Xamarin.Forms.3.0.0.482510\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Xamarin.Forms.GoogleMaps, Version=3.0.1.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Xamarin.Forms.GoogleMaps.3.2.0\lib\MonoAndroid70\Xamarin.Forms.GoogleMaps.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.GoogleMaps.Android, Version=3.2.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Xamarin.Forms.GoogleMaps.3.2.0\lib\MonoAndroid70\Xamarin.Forms.GoogleMaps.Android.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\Xamarin.Forms.3.0.0.482510\lib\MonoAndroid10\Xamarin.Forms.Platform.dll</HintPath>
       <Private>True</Private>
@@ -170,14 +178,6 @@
     <ProjectReference Include="..\Xamarin.Forms.GoogleMaps.Clustering\Xamarin.Forms.GoogleMaps.Clustering.csproj">
       <Project>{5542cbe9-1858-46a1-888f-cfbf8f05cffe}</Project>
       <Name>Xamarin.Forms.GoogleMaps.Clustering</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps.Android\Xamarin.Forms.GoogleMaps.Android.csproj">
-      <Project>{d12eade4-1457-4126-8ea7-9bedf5393409}</Project>
-      <Name>Xamarin.Forms.GoogleMaps.Android</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps.csproj">
-      <Project>{fd51ac0b-e197-4f79-a78d-20c044eac6ea}</Project>
-      <Name>Xamarin.Forms.GoogleMaps</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
