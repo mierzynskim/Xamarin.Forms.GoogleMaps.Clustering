@@ -5,11 +5,9 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
 {
     public sealed class ClusterClickedEventArgs : EventArgs
     {
-        public bool Handled { get; set; } = false;
-        
         public int ItemsCount { get; }
 
-        public IEnumerable<Pin> Pins { get; set; }
+        public IEnumerable<Pin> Pins { get; }
 
         internal ClusterClickedEventArgs(int itemsCount, IEnumerable<Pin> pins)
         {
