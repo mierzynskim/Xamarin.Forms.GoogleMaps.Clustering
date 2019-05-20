@@ -23,7 +23,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
         public bool OnClusterClick(ICluster cluster)
         {
             var pins = GetClusterPins(cluster);
-            map.SendClusterClicked(cluster.Items.Count, pins);
+            var clusterPosition = new Position(cluster.Position.Latitude, cluster.Position.Longitude);
+            map.SendClusterClicked(cluster.Items.Count, pins, clusterPosition);
             return false;
         }
 

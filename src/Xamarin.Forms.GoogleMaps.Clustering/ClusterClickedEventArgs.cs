@@ -9,10 +9,13 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
 
         public IEnumerable<Pin> Pins { get; }
 
-        internal ClusterClickedEventArgs(int itemsCount, IEnumerable<Pin> pins)
+        public Position Position { get; }
+
+        internal ClusterClickedEventArgs(int itemsCount, IEnumerable<Pin> pins, Position position)
         {
             ItemsCount = itemsCount;
             Pins = pins;
+            Position = position;
         }
     }
 }

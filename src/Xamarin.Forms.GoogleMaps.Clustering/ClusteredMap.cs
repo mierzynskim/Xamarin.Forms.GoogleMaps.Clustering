@@ -41,9 +41,9 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
                 PendingClusterRequest = true;
         }
         
-        internal void SendClusterClicked(int itemsCount, IEnumerable<Pin> pins)
+        internal void SendClusterClicked(int itemsCount, IEnumerable<Pin> pins, Position position)
         {
-            var args = new ClusterClickedEventArgs(itemsCount, pins);
+            var args = new ClusterClickedEventArgs(itemsCount, pins, position);
             ClusterClicked?.Invoke(this, args);
         }
     }
