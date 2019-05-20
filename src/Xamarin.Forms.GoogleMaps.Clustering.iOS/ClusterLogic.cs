@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using CoreGraphics;
+using Foundation;
 using Google.Maps;
 using Google.Maps.Utility;
 using UIKit;
@@ -31,6 +32,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
         private readonly Action<Pin, Marker> onMarkerDeleted;
         private readonly IImageFactory imageFactory;
         private ClusterRendererHandler clusterRenderer;
+        
+        private readonly Dictionary<NSObject, Pin> itemsDictionary = new Dictionary<NSObject, Pin>();
 
         public ClusterLogic(
             IImageFactory imageFactory,
@@ -131,6 +134,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             outerItem.NativeObject = nativeMarker;
 
             clusterManager.AddItem(nativeMarker);
+            itemsDictionary.Add(nativeMarker, outerItem);
             OnUpdateIconView(outerItem, nativeMarker);
             onMarkerCreated(outerItem, nativeMarker);
 
@@ -151,7 +155,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
 
             if (ReferenceEquals(Map.SelectedPin, outerItem))
                 Map.SelectedPin = null;
-
+            
+            itemsDictionary.Remove(nativeMarker);
             onMarkerDeleted(outerItem, nativeMarker);
 
             return nativeMarker;
@@ -197,7 +202,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
         private Pin LookupPin(Marker marker)
         {
             var associatedClusteredMarker = marker.UserData;
-            return GetItems(Map).FirstOrDefault(outerItem => ReferenceEquals(outerItem.NativeObject, associatedClusteredMarker));
+            return associatedClusteredMarker != null ? itemsDictionary[associatedClusteredMarker] : null;
         }
 
         private void HandleClusterRequest()
@@ -228,7 +233,10 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
         private bool HandleGmsTappedMarker(MapView mapView, Marker marker)
         {
             if (marker?.UserData is ICluster cluster)
-                return ClusteredMap.SendClusterClicked((int) cluster.Count);
+            {
+                var pins = GetClusterPins(cluster);
+                return ClusteredMap.SendClusterClicked((int) cluster.Count, pins);
+            }
             var targetPin = LookupPin(marker);
 
             if (Map.SendPinClicked(targetPin))
@@ -246,6 +254,18 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             }
 
             return false;
+        }
+
+        private List<Pin> GetClusterPins(ICluster cluster)
+        {
+            var pins = new List<Pin>();
+            foreach (var item in cluster.Items)
+            {
+                var clusterItem = (ClusteredMarker) item;
+                pins.Add(itemsDictionary[clusterItem]);
+            }
+
+            return pins;
         }
 
         private void InfoWindowClosed(object sender, GMSMarkerEventEventArgs e)
