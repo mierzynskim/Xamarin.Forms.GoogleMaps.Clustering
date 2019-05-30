@@ -36,20 +36,15 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
         private void SendCluster()
         {
             if (OnCluster != null)
-            {
                 OnCluster.Invoke();
-            }
             else
-            {
                 PendingClusterRequest = true;
-            }
         }
         
-        internal bool SendClusterClicked(int itemsCount)
+        internal void SendClusterClicked(int itemsCount, IEnumerable<Pin> pins, Position position)
         {
-            var args = new ClusterClickedEventArgs(itemsCount);
+            var args = new ClusterClickedEventArgs(itemsCount, pins, position);
             ClusterClicked?.Invoke(this, args);
-            return args.Handled;
         }
     }
 }

@@ -64,8 +64,8 @@
       <HintPath>$(SolutionDir)\packages\Xamarin.Forms.3.0.0.482510\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Xamarin.Google.iOS.Maps.Utility, Version=1.0.6998.25934, Culture=neutral, PublicKeyToken=null">
-      <HintPath>$(SolutionDir)packages\Xamarin.Google.iOS.Maps.Utility.2.1.1-pre2\lib\Xamarin.iOS10\Xamarin.Google.iOS.Maps.Utility.dll</HintPath>
+    <Reference Include="Xamarin.Google.iOS.Maps.Utility, Version=1.0.7088.29298, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\Sample\packages\Xamarin.Google.iOS.Maps.Utility.2.1.1-pre3\lib\Xamarin.iOS10\Xamarin.Google.iOS.Maps.Utility.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.iOS" />
