@@ -13,6 +13,17 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
         public ClusterAlgorithm Algorithm { get; set; }
 
         /// <summary>
+        /// Gets or sets whether the pins are clustered automatically after a new one is added.
+        /// </summary>
+        /// <value><c>true</c> (default) if enabled, automatically clusters; otherwise, <c>false</c>.</value>
+        /// <example>
+        /// The cluster function is called every time a new pin is added to the map so the displayed pins are updated. 
+        /// Setting this property to false won't call the cluster function, and so map pins won't be updated until Cluster() is manually called on your map object.
+        /// Default (true) is recommended. Moving the camera or changing the zoom level updates the pins regardless.
+        /// </example>
+        public bool AutoClusterAfterAddingPin { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether this <see cref="T:Xamarin.Forms.GoogleMaps.Clustering.ClusterOptions"/> enable buckets grouping.
         /// </summary>
         /// <value><c>true</c> if enable buckets; otherwise, <c>false</c>.</value>
