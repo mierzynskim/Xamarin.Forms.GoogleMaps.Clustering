@@ -160,17 +160,13 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
         protected override void AddItems(IList newItems)
         {
             base.AddItems(newItems);
-
-            if (ClusteredMap.ClusterOptions.AutoClusterAfterAddingPin)
-                clusterManager.Cluster();
+            clusterManager.Cluster();
         }
 
         protected override void RemoveItems(IList oldItems)
         {
             base.RemoveItems(oldItems);
-
-            if (ClusteredMap.ClusterOptions.AutoClusterAfterAddingPin)
-                clusterManager.Cluster();
+            clusterManager.Cluster();
         }
         
         protected override void OnItemPropertyChanged(object sender, PropertyChangedEventArgs e)
