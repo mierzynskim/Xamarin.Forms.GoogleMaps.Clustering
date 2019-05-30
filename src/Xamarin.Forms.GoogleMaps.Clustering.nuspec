@@ -5,6 +5,12 @@
     <title>Xamarin.Forms.GoogleMaps.Clustering</title>
     <version>$version$</version>
     <releaseNotes>
+
+# 1.0.0
+* Finally the library doesn't rely on a custom fork of Xamarin.Forms.GoogleMaps
+* ClusterClicked event args contains information about pins and location of a cluster
+* Removed Handled property from ClusterClickedEventArgs because it can't be handled on both Android and iOS
+
 # 0.4.0
 * Do not allow to update clustered pin until it's rendered. Fixed crash caused by allowing this.
 * [Android] Fixed icon cache to support setting icons for clusters containing less markers than minimum bucket size
@@ -46,21 +52,15 @@
       </group>
       <group targetFramework="Xamarin.iOS10">
         <dependency id="Xamarin.Google.iOS.Maps" version="2.5.0"/>
-        <dependency id="Xamarin.Google.iOS.Maps.Utility" version="2.1.1-pre2"/>
+        <dependency id="Xamarin.Google.iOS.Maps.Utility" version="2.1.1-pre3"/>
         <dependency id="Xamarin.Forms.GoogleMaps" version="3.2.0" />
       </group>
     </dependencies>
     </metadata>
     <files>
-        <!--Core main-->
-        <file src="Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\bin\Release\netstandard2.0\Xamarin.Forms.GoogleMaps.dll" target="lib\netstandard2.0" />
         <!--Core-->
         <file src="Xamarin.Forms.GoogleMaps.Clustering\bin\Release\netstandard2.0\Xamarin.Forms.GoogleMaps.Clustering.dll" target="lib\netstandard2.0" />
-
-        <!--Xamarin.Android main-->
-        <file src="Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps.Android\bin\Release\Xamarin.Forms.GoogleMaps.Android.dll" target="lib\MonoAndroid70\Xamarin.Forms.GoogleMaps.Android.dll" />
-        <file src="Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\bin\Release\netstandard2.0\Xamarin.Forms.GoogleMaps.dll" target="lib\MonoAndroid70\Xamarin.Forms.GoogleMaps.dll" />
-    
+   
         <!--Xamarin.Android-->
         <file src="Xamarin.Forms.GoogleMaps.Android.Utils\bin\Release\GoogleMapsUtility.dll" target="lib\MonoAndroid70\GoogleMapsUtility.dll" />
         <file src="Xamarin.Forms.GoogleMaps.Clustering.Android\bin\Release\Xamarin.Forms.GoogleMaps.Clustering.Android.dll" target="lib\MonoAndroid70\Xamarin.Forms.GoogleMaps.Clustering.Android.dll" />
@@ -69,9 +69,5 @@
         <!--Xamarin.iOS-->
         <file src="Xamarin.Forms.GoogleMaps.Clustering.iOS\bin\Release\Xamarin.Forms.GoogleMaps.Clustering.iOS.dll" target="lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.Clustering.iOS.dll" />
         <file src="Xamarin.Forms.GoogleMaps.Clustering\bin\Release\netstandard2.0\Xamarin.Forms.GoogleMaps.Clustering.dll" target="lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.Clustering.dll" />
-
-        <!--Xamarin.iOS main-->
-        <file src="Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps.iOS\bin\Release\Xamarin.Forms.GoogleMaps.iOS.dll" target="lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.iOS.dll" />
-        <file src="Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\Xamarin.Forms.GoogleMaps\bin\Release\netstandard2.0\Xamarin.Forms.GoogleMaps.dll" target="lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.dll" />
-    </files>
+   </files>
 </package>

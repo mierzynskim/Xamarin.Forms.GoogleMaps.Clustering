@@ -1,5 +1,10 @@
 Xamarin.Forms.GoogleMaps.Clustering Release Notes
 ----
+# 1.0.0
+* Finally the library doesn't rely on a custom fork of Xamarin.Forms.GoogleMaps
+* ClusterClicked event args contains information about pins and location of a cluster
+* Removed Handled property from ClusterClickedEventArgs because it can't be handled on both Android and iOS
+
 # 0.4.0
 * Do not allow to update clustered pin until it's rendered. Fixed crash caused by allowing this.
 * [Android] Fixed icon cache to support setting icons for clusters containing less markers than minimum bucket size
