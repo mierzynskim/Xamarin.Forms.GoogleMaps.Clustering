@@ -304,10 +304,14 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
                 var factory = bitmapDescriptorFactory ?? DefaultBitmapDescriptorFactory.Instance;
                 var nativeDescriptor = factory.ToNative(outerItem.Icon);
                 nativeItem.Icon = nativeDescriptor;
+                
+                // The values of AnchorX: 0.5f and AnchorY: 0.5f move the marker to the upperleft.
+                // 0.5 and 1.0 make it stay in the same spot.
                 nativeItem.AnchorX = 0.5f;
-                nativeItem.AnchorY = 0.5f;
+                nativeItem.AnchorY = 1.0f;
+
                 nativeItem.InfoWindowAnchorX = 0.5f;
-                nativeItem.InfoWindowAnchorY = 0.5f;
+                nativeItem.InfoWindowAnchorY = 1.0f;
             }
         }
 
