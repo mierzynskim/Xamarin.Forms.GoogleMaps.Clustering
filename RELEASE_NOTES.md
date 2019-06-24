@@ -1,5 +1,8 @@
 Xamarin.Forms.GoogleMaps.Clustering Release Notes
 ----
+# 1.0.1
+* Added back support for netstandard1.0
+
 # 1.0.0
 * Finally the library doesn't rely on a custom fork of Xamarin.Forms.GoogleMaps
 * ClusterClicked event args contains information about pins and location of a cluster
