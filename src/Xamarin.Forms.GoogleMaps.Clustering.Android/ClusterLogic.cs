@@ -226,13 +226,15 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             if (e.PropertyName != Pin.PositionProperty.PropertyName)
                 clusterRenderer.SetUpdateMarker((sender as Pin).NativeObject as ClusteredMarker);
         }
-        
+
         public Pin LookupPin(ClusteredMarker marker)
         {
             var markerId = marker.Id;
-            return markerId != null ? itemsDictionary[markerId] : null;
+            return markerId != null ?
+                (itemsDictionary.Contains(markerId) ? itemsDictionary[markerId] : null)
+                : null;
         }
-        
+
         public void HandleClusterRequest()
         {
             clusterManager.Cluster();
