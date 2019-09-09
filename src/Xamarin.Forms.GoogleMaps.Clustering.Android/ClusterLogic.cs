@@ -231,7 +231,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
         {
             var markerId = marker.Id;
             return markerId != null ?
-                (itemsDictionary.Contains(markerId) ? itemsDictionary[markerId] : null)
+                (itemsDictionary.ContainsKey(markerId) ? itemsDictionary[markerId] : null)
                 : null;
         }
 
