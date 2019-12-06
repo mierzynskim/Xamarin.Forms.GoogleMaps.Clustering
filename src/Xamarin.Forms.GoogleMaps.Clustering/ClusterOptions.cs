@@ -54,6 +54,11 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
         /// <value>The renderer callback.</value>
         internal Func<string, BitmapDescriptor> RendererCallback { get; set; }
 
+        /// <summary>
+        /// Gets or sets the minimum cluster size.
+        /// </summary>
+        internal int MinimumClusterSize { get; set; } = 5;
+        
         public ClusterOptions()
         {
             Algorithm = ClusterAlgorithm.NonHierarchicalDistanceBased;
@@ -146,8 +151,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
             RendererImage = image;
             RendererCallback = null;
         }
-
-
+        
         /// <summary>
         /// Sets the rendering method to use custom lambda action.
         /// </summary>
@@ -156,6 +160,16 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
         {
             RendererImage = null;
             RendererCallback = callback;
+        }
+
+        /// <summary>
+        /// Sets the minimum cluster size. Clusters with less will be broken-up into single-item clusters
+        /// Default value is 5.
+        /// </summary>
+        /// <param name="size"></param>
+        public void SetMinimumClusterSize(int size)
+        {
+            MinimumClusterSize = size;
         }
     }
 }
