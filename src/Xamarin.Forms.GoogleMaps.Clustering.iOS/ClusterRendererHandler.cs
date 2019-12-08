@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using CoreAnimation;
 using CoreGraphics;
@@ -12,15 +11,17 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
 {
     internal class ClusterRendererHandler : DefaultClusterRenderer
     {
-        private readonly MapView nativeMap;
         private const double AnimationDuration = 0.5; 
-        private float maxClusterZoom = 20;
-        private readonly nuint minimumClusterSize = 5;
 
-        public ClusterRendererHandler(MapView mapView, ClusterIconGenerator iconGenerator)
+        private readonly MapView nativeMap;
+        private readonly int minimumClusterSize;
+        private float maxClusterZoom = 20;
+
+        public ClusterRendererHandler(MapView mapView, ClusterIconGenerator iconGenerator, int minimumClusterSize)
             : base(mapView, iconGenerator)
         {
             nativeMap = mapView;
+            this.minimumClusterSize = minimumClusterSize;
         }
 
         public Marker GetMarker(ClusteredMarker clusteredMarker) =>
@@ -30,7 +31,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
         {
             var marker = GetMarker(clusteredMarker);
             if (marker == null) return;
-            marker.Position = new CLLocationCoordinate2D(clusteredMarker.Position.Latitude, clusteredMarker.Position.Longitude);
+            marker.Position = new CLLocationCoordinate2D(clusteredMarker.Position.Latitude,
+                clusteredMarker.Position.Longitude);
             marker.Title = clusteredMarker.Title;
             marker.Snippet = clusteredMarker.Snippet;
             marker.Draggable = clusteredMarker.Draggable;
@@ -44,7 +46,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
         
         public override bool ShouldRenderAsCluster(ICluster cluster, float zoom)
         {
-            return cluster.Count >= minimumClusterSize && zoom <= maxClusterZoom;
+            return cluster.Count > (uint) minimumClusterSize && zoom <= maxClusterZoom;
         }
 
         [Export("markerWithPosition:from:userData:clusterIcon:animated:")]
