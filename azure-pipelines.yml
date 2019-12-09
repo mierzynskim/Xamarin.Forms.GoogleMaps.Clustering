@@ -17,17 +17,3 @@ steps:
   inputs:
     solution: src/Xamarin.Forms.GoogleMaps.Clustering.sln
     msbuildArguments: '/t:restore;build /p:Configuration=Release'
-
-- task: NuGetCommand@2
-  inputs:
-    command: 'pack'
-    packagesToPack: '**/*.nuspec'
-    versioningScheme: 'byEnvVar'
-    versionEnvVar: 'nuget_version'
-
-- task: NuGetCommand@2
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-    nuGetFeedType: 'internal'
-    publishVstsFeed: '99ed3248-622e-4937-b784-866e4a010f52/982b84d4-4497-4086-9150-994d097a0e00'
