@@ -28,9 +28,9 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             {
                 var buckets = options.Buckets;
                 bucketIndex = BucketIndexForSize((nint)size);
-
                 text = size < (nuint)buckets[0] ? size.ToString() : $"{buckets[bucketIndex]}+";
             }
+            else text = size.ToString();
 
             if (options.RendererCallback != null)
                 return DefaultImageFactory.Instance.ToUIImage(options.RendererCallback(text));
