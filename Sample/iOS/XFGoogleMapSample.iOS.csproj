@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.props" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.props')" />
+  <Import Project="..\packages\Xamarin.Forms.4.4.0.991265\build\Xamarin.Forms.props" Condition="Exists('..\packages\Xamarin.Forms.4.4.0.991265\build\Xamarin.Forms.props')" />
+  <Import Project="..\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.props" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.props')" />
   <Import Project="..\packages\Xamarin.Forms.3.0.0.482510\build\netstandard2.0\Xamarin.Forms.props" Condition="Exists('..\packages\Xamarin.Forms.3.0.0.482510\build\netstandard2.0\Xamarin.Forms.props')" />
   <Import Project="$(SolutionDir)\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.props" Condition="Exists('$(SolutionDir)\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.props')" />
   <PropertyGroup>
@@ -12,6 +13,8 @@
     <RootNamespace>XFGoogleMapSample.iOS</RootNamespace>
     <AssemblyName>XFGoogleMapSampleiOS</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -109,39 +112,38 @@
     <AssemblyName>XFGoogleMapSample.iOS</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Google.Maps, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\Xamarin.Google.iOS.Maps.2.5.0\lib\Xamarin.iOS10\Google.Maps.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Google.Maps, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Google.iOS.Maps.2.7.0\lib\Xamarin.iOS10\Google.Maps.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="Xamarin.Forms.GoogleMaps, Version=3.0.1.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\Xamarin.Forms.GoogleMaps.3.2.0\lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Forms.4.4.0.991265\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.GoogleMaps.iOS, Version=3.2.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\Xamarin.Forms.GoogleMaps.3.2.0\lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.iOS.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Xamarin.Forms.GoogleMaps, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Forms.GoogleMaps.3.2.1\lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.GoogleMaps.iOS, Version=3.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Forms.GoogleMaps.3.2.1\lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Forms.4.4.0.991265\lib\Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform.iOS, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Forms.4.4.0.991265\lib\Xamarin.iOS10\Xamarin.Forms.Platform.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Forms.4.4.0.991265\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.iOS" />
-    <Reference Include="Xamarin.Forms.Core">
-      <HintPath>..\packages\Xamarin.Forms.3.0.0.482510\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Platform">
-      <HintPath>..\packages\Xamarin.Forms.3.0.0.482510\lib\Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Platform.iOS">
-      <HintPath>..\packages\Xamarin.Forms.3.0.0.482510\lib\Xamarin.iOS10\Xamarin.Forms.Platform.iOS.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Xaml">
-      <HintPath>..\packages\Xamarin.Forms.3.0.0.482510\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Xamarin.Forms.GoogleMaps.Clustering.iOS\Xamarin.Forms.GoogleMaps.Clustering.iOS.csproj">
       <Project>{c599d787-23ad-4cf1-a47f-27e889318199}</Project>
       <Name>Xamarin.Forms.GoogleMaps.Clustering.iOS</Name>
+      <IsAppExtension>false</IsAppExtension>
+      <IsWatchApp>false</IsWatchApp>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Xamarin.Forms.GoogleMaps.Clustering\Xamarin.Forms.GoogleMaps.Clustering.csproj">
       <Project>{3ebd76ca-8703-49a3-9a0d-6827ef43bc73}</Project>
@@ -154,25 +156,53 @@
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json">
-      <InProject>false</InProject>
+      <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\Contents.json">
-      <InProject>false</InProject>
+      <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-20x20%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-20x20%403x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-29x29%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-29x29%403x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-40x40%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-40x40%403x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-60x60%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-60x60%403x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-20x20%401x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-29x29%401x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-40x40%401x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-76x76%401x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-76x76%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-83.5x83.5%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-20x20%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-20x20%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-29x29%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-29x29%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-40x40%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-40x40%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-60x60%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-60x60%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-20x20%401x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-29x29%401x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-40x40%401x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-76x76%401x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-76x76%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-App-83.5x83.5%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -223,14 +253,17 @@
     </MonoDevelop>
   </ProjectExtensions>
   <Import Project="..\packages\Xamarin.Forms.3.0.0.482510\build\netstandard2.0\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.3.0.0.482510\build\netstandard2.0\Xamarin.Forms.targets')" />
-  <Import Project="..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets')" />
-  <Import Project="..\packages\Xamarin.Google.iOS.Maps.2.5.0\build\Xamarin.Google.iOS.Maps.targets" Condition="Exists('..\packages\Xamarin.Google.iOS.Maps.2.5.0\build\Xamarin.Google.iOS.Maps.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.props'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.Google.iOS.Maps.2.5.0\build\Xamarin.Google.iOS.Maps.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Google.iOS.Maps.2.5.0\build\Xamarin.Google.iOS.Maps.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.props'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Forms.4.4.0.991265\build\Xamarin.Forms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Forms.4.4.0.991265\build\Xamarin.Forms.props'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Forms.4.4.0.991265\build\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Forms.4.4.0.991265\build\Xamarin.Forms.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Google.iOS.Maps.2.7.0\build\Xamarin.Google.iOS.Maps.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Google.iOS.Maps.2.7.0\build\Xamarin.Google.iOS.Maps.targets'))" />
   </Target>
+  <Import Project="..\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.targets')" />
+  <Import Project="..\packages\Xamarin.Forms.4.4.0.991265\build\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.4.4.0.991265\build\Xamarin.Forms.targets')" />
+  <Import Project="..\packages\Xamarin.Google.iOS.Maps.2.7.0\build\Xamarin.Google.iOS.Maps.targets" Condition="Exists('..\packages\Xamarin.Google.iOS.Maps.2.7.0\build\Xamarin.Google.iOS.Maps.targets')" />
 </Project>
