@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Google.Maps, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\git\Xam.Controls\sample\packages\Xamarin.Google.iOS.Maps.3.5.0\lib\xamarinios10\Google.Maps.dll</HintPath>
+      <HintPath>..\..\Sample\packages\Xamarin.Google.iOS.Maps.2.7.0\lib\Xamarin.iOS10\Google.Maps.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -45,13 +45,11 @@
       <HintPath>..\..\..\git\Xam.Controls\sample\packages\Xamarin.Forms.4.4.0.991265\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Xamarin.Forms.GoogleMaps, Version=3.0.1.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\Xamarin.Forms.GoogleMaps.3.2.0\lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Xamarin.Forms.GoogleMaps, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Sample\packages\Xamarin.Forms.GoogleMaps.3.2.1\lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.GoogleMaps.iOS, Version=3.2.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\Xamarin.Forms.GoogleMaps.3.2.0\lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.iOS.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Xamarin.Forms.GoogleMaps.iOS, Version=3.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Sample\packages\Xamarin.Forms.GoogleMaps.3.2.1\lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.iOS.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Platform, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\git\Xam.Controls\sample\packages\Xamarin.Forms.4.4.0.991265\lib\Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
@@ -102,9 +100,11 @@
     <Error Condition="!Exists('..\..\..\git\Xam.Controls\sample\packages\Xamarin.Google.iOS.Maps.3.5.0\build\Xamarin.Google.iOS.Maps.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\git\Xam.Controls\sample\packages\Xamarin.Google.iOS.Maps.3.5.0\build\Xamarin.Google.iOS.Maps.targets'))" />
     <Error Condition="!Exists('..\..\..\git\Xam.Controls\sample\packages\Xamarin.Forms.4.4.0.991265\build\Xamarin.Forms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\git\Xam.Controls\sample\packages\Xamarin.Forms.4.4.0.991265\build\Xamarin.Forms.props'))" />
     <Error Condition="!Exists('..\..\..\git\Xam.Controls\sample\packages\Xamarin.Forms.4.4.0.991265\build\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\git\Xam.Controls\sample\packages\Xamarin.Forms.4.4.0.991265\build\Xamarin.Forms.targets'))" />
+    <Error Condition="!Exists('..\..\Sample\packages\Xamarin.Google.iOS.Maps.2.7.0\build\Xamarin.Google.iOS.Maps.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\Sample\packages\Xamarin.Google.iOS.Maps.2.7.0\build\Xamarin.Google.iOS.Maps.targets'))" />
   </Target>
   <Import Project="$(SolutionDir)\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.targets" Condition="Exists('$(SolutionDir)\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.targets')" />
   <Import Project="$(SolutionDir)\packages\Xamarin.Google.iOS.Maps.2.7.0\build\Xamarin.Google.iOS.Maps.targets" Condition="Exists('$(SolutionDir)\packages\Xamarin.Google.iOS.Maps.2.7.0\build\Xamarin.Google.iOS.Maps.targets')" />
   <Import Project="..\..\..\git\Xam.Controls\sample\packages\Xamarin.Google.iOS.Maps.3.5.0\build\Xamarin.Google.iOS.Maps.targets" Condition="Exists('..\..\..\git\Xam.Controls\sample\packages\Xamarin.Google.iOS.Maps.3.5.0\build\Xamarin.Google.iOS.Maps.targets')" />
   <Import Project="..\..\..\git\Xam.Controls\sample\packages\Xamarin.Forms.4.4.0.991265\build\Xamarin.Forms.targets" Condition="Exists('..\..\..\git\Xam.Controls\sample\packages\Xamarin.Forms.4.4.0.991265\build\Xamarin.Forms.targets')" />
+  <Import Project="..\..\Sample\packages\Xamarin.Google.iOS.Maps.2.7.0\build\Xamarin.Google.iOS.Maps.targets" Condition="Exists('..\..\Sample\packages\Xamarin.Google.iOS.Maps.2.7.0\build\Xamarin.Google.iOS.Maps.targets')" />
 </Project>
