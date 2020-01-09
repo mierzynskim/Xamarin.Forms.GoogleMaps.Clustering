@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace Xamarin.Forms.GoogleMaps.Clustering
 {
+    /// <summary>
+    /// Container of the cluster options
+    /// </summary>
     public class ClusterOptions
     {
         /// <summary>
@@ -58,7 +61,10 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
         /// Gets or sets the minimum cluster size.
         /// </summary>
         internal int MinimumClusterSize { get; set; } = 5;
-        
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public ClusterOptions()
         {
             Algorithm = ClusterAlgorithm.NonHierarchicalDistanceBased;
@@ -72,9 +78,23 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
         /// Sets the buckets.
         /// </summary>
         /// <param name="buckets">Buckets.</param>
+        /// <param name="color">Use one color for all buckets.</param>
+        public void SetBuckets(int[] buckets, Color color)
+        {
+            if (color == null)
+                throw new ArgumentException("There most be at least one color specified for the buckets.");
+            SetBuckets(buckets, (from bucket in buckets select color).ToArray());
+        }
+
+        /// <summary>
+        /// Sets the buckets.
+        /// </summary>
+        /// <param name="buckets">Buckets.</param>
         /// <param name="colors">Colors.</param>
         public void SetBuckets(int[] buckets, Color[] colors)
         {
+            if (buckets == null && !buckets.Any())
+                throw new ArgumentException("There must be at least one buckets as a parameter.");
             if (buckets.Length != colors.Length)
                 throw new ArgumentException("The buckets length must be equal to the colors length.");
 
@@ -151,7 +171,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
             RendererImage = image;
             RendererCallback = null;
         }
-        
+
         /// <summary>
         /// Sets the rendering method to use custom lambda action.
         /// </summary>

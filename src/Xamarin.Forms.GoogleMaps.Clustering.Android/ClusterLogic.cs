@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using Android.App;
 using Android.Content;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
@@ -27,7 +28,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
         private ClusterManager clusterManager;
         private ClusterLogicHandler clusterHandler;
 
-        private readonly Context context;
+        private readonly Activity context;
         private readonly IBitmapDescriptorFactory bitmapDescriptorFactory;
         private readonly Action<Pin, MarkerOptions> onMarkerCreating;
         private readonly Action<Pin, ClusteredMarker> onMarkerCreated;
@@ -43,7 +44,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
         public ClusteredMap ClusteredMap => (ClusteredMap) Map;
 
         public ClusterLogic(
-            Context context,
+            Activity context,
             IBitmapDescriptorFactory bitmapDescriptorFactory,
             Action<Pin, MarkerOptions> onMarkerCreating,
             Action<Pin, ClusteredMarker> onMarkerCreated, 

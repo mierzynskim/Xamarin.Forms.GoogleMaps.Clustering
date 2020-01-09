@@ -1,9 +1,16 @@
 ﻿using System.Collections.Generic;
+using Android.App;
 using Android.Content;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
+using Android.Graphics;
+using Android.Graphics.Drawables;
+using Android.Support.V4.Content;
+using Android.Support.V4.Content.Res;
+using Android.Widget;
 using Com.Google.Maps.Android.Clustering;
 using Com.Google.Maps.Android.Clustering.View;
+using Com.Google.Maps.Android.UI;
 using Xamarin.Forms.GoogleMaps.Android.Factories;
 using Xamarin.Forms.Platform.Android;
 using NativeBitmapDescriptor = Android.Gms.Maps.Model.BitmapDescriptor;
@@ -13,19 +20,32 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
     public class ClusterRenderer : DefaultClusterRenderer
     {
         private readonly ClusteredMap map;
+        private readonly Context context;
         private readonly Dictionary<string, NativeBitmapDescriptor> disabledBucketsCache;
         private readonly Dictionary<string, NativeBitmapDescriptor> enabledBucketsCache;
+        private IconGenerator iconGenerator;
+        private ImageView markerView;
 
-        public ClusterRenderer(Context context,
+        public ClusterRenderer(Activity context,
             ClusteredMap map,
             GoogleMap nativeMap,
             ClusterManager manager)
             : base(context, nativeMap, manager)
         {
             this.map = map;
-            MinClusterSize = map.ClusterOptions.MinimumClusterSize;
+            this.context = context;
+             MinClusterSize = map.ClusterOptions.MinimumClusterSize;
             disabledBucketsCache = new Dictionary<string, NativeBitmapDescriptor>();
             enabledBucketsCache = new Dictionary<string, NativeBitmapDescriptor>();
+
+            //Retrieve views from AXML to display groups of markers (clustering)
+            var viewMarkerClusterGrouped = context.LayoutInflater.Inflate(Resource.Layout.marker_cluster_grouped, null);
+            markerView = viewMarkerClusterGrouped.FindViewById<ImageView>(Resource.Id.marker_cluster_grouped_imageview);
+            
+            //Configure the groups of markers icon generator with the view. The icon generator will be used to display the marker's picture with a text
+            iconGenerator = new IconGenerator(context);
+            iconGenerator.SetContentView(viewMarkerClusterGrouped);
+            iconGenerator.SetBackground(null);
         }
 
         public void SetUpdateMarker(ClusteredMarker clusteredMarker)
@@ -49,7 +69,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             NativeBitmapDescriptor icon;
             if (map.ClusterOptions.RendererCallback != null)
             {
-                var descriptorFromCallback = 
+                var descriptorFromCallback =
                     map.ClusterOptions.RendererCallback(map.ClusterOptions.EnableBuckets ?
                         GetClusterText(cluster) : cluster.Size.ToString());
                 icon = GetIcon(cluster, descriptorFromCallback);
@@ -59,6 +79,14 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             {
                 icon = GetIcon(cluster, map.ClusterOptions.RendererImage);
                 options.SetIcon(icon);
+            }
+            else if (!map.ClusterOptions.EnableBuckets)
+            {
+                markerView.SetBackgroundResource(Resource.Drawable.marker_cluster);
+                var shape = (GradientDrawable)markerView.Background;
+                shape.SetColorFilter(new PorterDuffColorFilter(map.ClusterOptions.BucketColors[BucketIndexForSize(cluster.Size)].ToAndroid(), PorterDuff.Mode.SrcAtop));
+                Bitmap iconBitmap = iconGenerator.MakeIcon(cluster.Size.ToString());
+                options.SetIcon(global::Android.Gms.Maps.Model.BitmapDescriptorFactory.FromBitmap(iconBitmap));
             }
             else
                 base.OnBeforeClusterRendered(cluster, options);

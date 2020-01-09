@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using Android.App;
 using Android.Content;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
@@ -16,7 +17,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
         
         private ClusteredMap ClusteredMap => (ClusteredMap) Map;
         
-        public ClusteredMapRenderer(Context context) : base(context)
+        public ClusteredMapRenderer(Activity context) : base(context)
         {
             Logics.Remove(Logics.OfType<PinLogic>().First());
             clusterLogic = new ClusterLogic(context, Config.BitmapDescriptorFactory,
