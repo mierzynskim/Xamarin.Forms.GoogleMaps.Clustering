@@ -77,7 +77,7 @@
       <Version>4.4.0.991265</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.GoogleMaps">
-      <Version>3.3.0</Version>
+      <Version>3.2.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.GooglePlayServices.Maps">
       <Version>71.1610.0</Version>
