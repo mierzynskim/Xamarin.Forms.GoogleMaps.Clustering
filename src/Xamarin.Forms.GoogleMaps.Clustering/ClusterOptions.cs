@@ -9,61 +9,10 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
     /// </summary>
     public class ClusterOptions
     {
-        /// <summary>
-        /// Gets or sets the algorithm.
-        /// </summary>
-        /// <value>The algorithm.</value>
-        public ClusterAlgorithm Algorithm { get; set; }
+        #region Constructor & Destructor
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="T:Xamarin.Forms.GoogleMaps.Clustering.ClusterOptions"/> enable buckets grouping.
-        /// </summary>
-        /// <value><c>true</c> if enable buckets; otherwise, <c>false</c>.</value>
-        /// <example>
-        ///     Instead of 136 pins groups, the cluster will show "100+" (since that's the nearest bucket declared).
-        ///     Please note that the usage of buckets is HIGHLY RECOMMENDED, since the system caches the cluster icons.
-        ///     So, instead of having 1...N icons being generated, you'll mave maximum {buckets.Length} icons.
-        /// </example>
-        public bool EnableBuckets { get; set; }
-
-        /// <summary>
-        /// Gets the buckets.
-        /// </summary>
-        /// <value>The buckets.</value>
-        /// <example>new int[] { 10, 50, 100, 500, 1000, 5000, 10000 }</example>
-        public int[] Buckets { get; private set; }
-
-        /// <summary>
-        /// Gets the bucket colors.
-        /// </summary>
-        /// <value>The bucket colors.</value>
-        public Color[] BucketColors { get; private set; }
-
-        /// <summary>
-        /// Gets or sets the color of the renderer text.
-        /// </summary>
-        /// <value>The color of the renderer text.</value>
-        internal Color RendererTextColor { get; set; }
-
-        /// <summary>
-        /// Gets or sets the renderer image.
-        /// </summary>
-        /// <value>The renderer image.</value>
-        internal BitmapDescriptor RendererImage { get; set; }
-
-        /// <summary>
-        /// Gets or sets the renderer callback.
-        /// </summary>
-        /// <value>The renderer callback.</value>
-        internal Func<string, BitmapDescriptor> RendererCallback { get; set; }
-
-        /// <summary>
-        /// Gets or sets the minimum cluster size.
-        /// </summary>
-        internal int MinimumClusterSize { get; set; } = 5;
-
-        /// <summary>
-        /// Constructor
+        /// Initializes a new instance of the <see cref="ClusterOptions"/> class.
         /// </summary>
         public ClusterOptions()
         {
@@ -73,6 +22,54 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
             RendererCallback = null;
             ResetBuckets();
         }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets the Algorithm
+        /// </summary>
+        public ClusterAlgorithm Algorithm { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="T:Xamarin.Forms.GoogleMaps.Clustering.ClusterOptions"/> enable buckets grouping.
+        /// </summary>
+        public bool EnableBuckets { get; set; }
+
+        /// <summary>
+        /// Gets the Buckets
+        /// </summary>
+        public int[] Buckets { get; private set; }
+
+        /// <summary>
+        /// Gets the bucket colors.
+        /// </summary>
+        public Color[] BucketColors { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the color of the renderer text.
+        /// </summary>
+        internal Color RendererTextColor { get; set; }
+
+        /// <summary>
+        /// Gets or sets the renderer image.
+        /// </summary>
+        internal BitmapDescriptor RendererImage { get; set; }
+
+        /// <summary>
+        /// Gets or sets the renderer callback.
+        /// </summary>
+        internal Func<string, BitmapDescriptor> RendererCallback { get; set; }
+
+        /// <summary>
+        /// Gets or sets the minimum cluster size.
+        /// </summary>
+        internal int MinimumClusterSize { get; set; } = 5;
+
+        #endregion
+
+        #region Public
 
         /// <summary>
         /// Sets the buckets.
@@ -191,5 +188,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
         {
             MinimumClusterSize = size;
         }
+
+        #endregion
     }
 }

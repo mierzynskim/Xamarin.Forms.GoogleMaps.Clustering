@@ -1,9 +1,9 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps.Clustering;
 using Xamarin.Forms.GoogleMaps.Clustering.iOS;
+
 
 [assembly: AssemblyTitle("Xamarin.Forms.GoogleMaps.Clustering.iOS")]
 [assembly: AssemblyDescription("")]

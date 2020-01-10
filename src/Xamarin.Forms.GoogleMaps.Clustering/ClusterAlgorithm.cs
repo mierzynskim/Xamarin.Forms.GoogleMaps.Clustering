@@ -5,7 +5,14 @@
     /// </summary>
     public enum ClusterAlgorithm
     {
+        /// <summary>
+        /// Defines the NonHierarchicalDistanceBased
+        /// </summary>
         NonHierarchicalDistanceBased,
+
+        /// <summary>
+        /// Defines the GridBased
+        /// </summary>
         GridBased,
         /// <summary>
         /// Android only

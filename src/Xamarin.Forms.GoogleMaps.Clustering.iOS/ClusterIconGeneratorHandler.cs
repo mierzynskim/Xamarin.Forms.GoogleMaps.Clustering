@@ -1,24 +1,53 @@
-using System;
 using CoreGraphics;
 using Foundation;
 using Google.Maps.Utility;
+using System;
 using UIKit;
 using Xamarin.Forms.GoogleMaps.iOS.Factories;
 using Xamarin.Forms.Platform.iOS;
 
 namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
 {
+    /// <summary>
+    /// Defines the <see cref="ClusterIconGeneratorHandler" />
+    /// </summary>
     internal class ClusterIconGeneratorHandler : DefaultClusterIconGenerator
     {
+        #region Variables
+
+        /// <summary>
+        /// Defines the iconCache
+        /// </summary>
         private readonly NSCache iconCache;
+
+        /// <summary>
+        /// Defines the options
+        /// </summary>
         private readonly ClusterOptions options;
 
+        #endregion
+
+        #region Constructor & Destructor
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ClusterIconGeneratorHandler"/> class.
+        /// </summary>
+        /// <param name="options">The options<see cref="ClusterOptions"/></param>
         public ClusterIconGeneratorHandler(ClusterOptions options)
         {
             iconCache = new NSCache();
             this.options = options;
         }
 
+        #endregion
+
+        #region Public
+
+        /// <summary>
+        /// The IconForSize
+        /// </summary>
+        /// <param name="size">The size<see cref="nuint"/></param>
+        /// <returns>The <see cref="UIImage"/></returns>
         public override UIImage IconForSize(nuint size)
         {
             string text = null;
@@ -39,6 +68,15 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             return GetIconForText(text, bucketIndex);
         }
 
+        #endregion
+
+        #region Private
+
+        /// <summary>
+        /// The BucketIndexForSize
+        /// </summary>
+        /// <param name="size">The size<see cref="nint"/></param>
+        /// <returns>The <see cref="nuint"/></returns>
         private nuint BucketIndexForSize(nint size)
         {
             uint index = 0;
@@ -50,6 +88,12 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             return index;
         }
 
+        /// <summary>
+        /// The GetIconForText
+        /// </summary>
+        /// <param name="text">The text<see cref="string"/></param>
+        /// <param name="baseImage">The baseImage<see cref="UIImage"/></param>
+        /// <returns>The <see cref="UIImage"/></returns>
         private UIImage GetIconForText(string text, UIImage baseImage)
         {
             var nsText = new NSString(text);
@@ -81,6 +125,12 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             return newImage;
         }
 
+        /// <summary>
+        /// The GetIconForText
+        /// </summary>
+        /// <param name="text">The text<see cref="string"/></param>
+        /// <param name="bucketIndex">The bucketIndex<see cref="nuint"/></param>
+        /// <returns>The <see cref="UIImage"/></returns>
         private UIImage GetIconForText(string text, nuint bucketIndex)
         {
             var nsText = new NSString(text);
@@ -125,5 +175,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
 
             return newImage;
         }
+
+        #endregion
     }
 }
