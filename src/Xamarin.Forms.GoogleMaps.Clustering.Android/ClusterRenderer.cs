@@ -131,9 +131,12 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
 
         private string GetClusterText(ICluster cluster)
         {
-            string result;
-            var size = cluster.Size;
+            return GetClusterText(cluster.Size);
+        }
 
+        protected override string GetClusterText(int size)
+        {
+            string result;
             if (map.ClusterOptions.EnableBuckets)
             {
                 var buckets = map.ClusterOptions.Buckets;
