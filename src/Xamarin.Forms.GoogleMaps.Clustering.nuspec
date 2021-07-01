@@ -6,6 +6,10 @@
     <version>$version$</version>
     <releaseNotes>
 
+# 1.1.0
+* Added option to set minimum cluster size
+* Call cluster method when pins collection is cleared
+
 # 1.0.1
 * Added back support for netstandard1.0
 
@@ -13,25 +17,6 @@
 * Finally the library doesn't rely on a custom fork of Xamarin.Forms.GoogleMaps
 * ClusterClicked event args contains information about pins and location of a cluster
 * Removed Handled property from ClusterClickedEventArgs because it can't be handled on both Android and iOS
-
-# 0.4.0
-* Do not allow to update clustered pin until it's rendered. Fixed crash caused by allowing this.
-* [Android] Fixed icon cache to support setting icons for clusters containing less markers than minimum bucket size
-* [iOS] Changed minimum cluster size to 5 to match Android
-
-# 0.3.2
-
-* Added missing changes from 0.3.1
-
-# 0.3.1
-
-* Correctly set alpha when updating a marker
-
-# 0.3
-
-* BREAKING CHANGE: ClusteredPins collection is removed. You should use Pins collection instead.
-* Support for pins collection updates
-* Implemented marker dragging
 
     </releaseNotes>
     <authors>mierzynskim</authors>

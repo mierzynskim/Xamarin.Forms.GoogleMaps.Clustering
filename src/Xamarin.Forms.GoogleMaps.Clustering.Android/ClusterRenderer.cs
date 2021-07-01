@@ -23,6 +23,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             : base(context, nativeMap, manager)
         {
             this.map = map;
+            MinClusterSize = map.ClusterOptions.MinimumClusterSize;
             disabledBucketsCache = new Dictionary<string, NativeBitmapDescriptor>();
             enabledBucketsCache = new Dictionary<string, NativeBitmapDescriptor>();
         }
@@ -130,9 +131,12 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
 
         private string GetClusterText(ICluster cluster)
         {
-            string result;
-            var size = cluster.Size;
+            return GetClusterText(cluster.Size);
+        }
 
+        protected override string GetClusterText(int size)
+        {
+            string result;
             if (map.ClusterOptions.EnableBuckets)
             {
                 var buckets = map.ClusterOptions.Buckets;

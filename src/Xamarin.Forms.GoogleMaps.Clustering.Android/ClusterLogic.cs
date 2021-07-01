@@ -220,6 +220,12 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             clusterManager.Cluster();
         }
 
+        protected override void ResetItems()
+        {
+            base.ResetItems();
+            clusterManager.Cluster();
+        }
+
         protected override void OnItemPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             base.OnItemPropertyChanged(sender, e);

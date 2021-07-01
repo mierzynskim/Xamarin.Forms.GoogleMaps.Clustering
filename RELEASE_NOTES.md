@@ -1,5 +1,9 @@
 Xamarin.Forms.GoogleMaps.Clustering Release Notes
 ----
+# 1.1.0
+* Added option to set minimum cluster size
+* Call cluster method when pins collection is cleared
+
 # 1.0.1
 * Added back support for netstandard1.0
 

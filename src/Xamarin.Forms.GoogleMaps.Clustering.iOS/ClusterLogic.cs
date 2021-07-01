@@ -57,7 +57,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             var algorithm = GetClusterAlgorithm(clusteredNewMap);
 
             var iconGenerator = new ClusterIconGeneratorHandler(ClusteredMap.ClusterOptions);
-            clusterRenderer = new ClusterRendererHandler(newNativeMap, iconGenerator);
+            clusterRenderer = new ClusterRendererHandler(newNativeMap, iconGenerator,
+                ClusteredMap.ClusterOptions.MinimumClusterSize);
             clusterManager = new ClusterManager(newNativeMap, algorithm, clusterRenderer);
 
             ClusteredMap.OnCluster = HandleClusterRequest;
@@ -171,6 +172,12 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
         protected override void RemoveItems(IList oldItems)
         {
             base.RemoveItems(oldItems);
+            clusterManager.Cluster();
+        }
+        
+        protected override void ResetItems()
+        {
+            base.ResetItems();
             clusterManager.Cluster();
         }
         
