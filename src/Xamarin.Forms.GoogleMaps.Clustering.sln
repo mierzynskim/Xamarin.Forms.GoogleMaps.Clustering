@@ -1,6 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Forms.GoogleMaps.Clustering", "Xamarin.Forms.GoogleMaps.Clustering\Xamarin.Forms.GoogleMaps.Clustering.csproj", "{5542CBE9-1858-46A1-888F-CFBF8F05CFFE}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31613.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xamarin.Forms.GoogleMaps.Clustering", "Xamarin.Forms.GoogleMaps.Clustering\Xamarin.Forms.GoogleMaps.Clustering.csproj", "{5542CBE9-1858-46A1-888F-CFBF8F05CFFE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Forms.GoogleMaps.Clustering.Android", "Xamarin.Forms.GoogleMaps.Clustering.Android\Xamarin.Forms.GoogleMaps.Clustering.Android.csproj", "{AAA2A1F0-B96F-40C8-B4FE-F42149E848B5}"
 EndProject
@@ -30,5 +33,11 @@ Global
 		{F38A2B58-0051-4E72-ADF9-9305AD4274A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F38A2B58-0051-4E72-ADF9-9305AD4274A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F38A2B58-0051-4E72-ADF9-9305AD4274A8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {31234393-B8D2-47D3-B3FE-F4BC70D623A6}
 	EndGlobalSection
 EndGlobal
