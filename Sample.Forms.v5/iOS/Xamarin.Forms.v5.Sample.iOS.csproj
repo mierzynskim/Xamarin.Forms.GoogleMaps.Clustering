@@ -139,6 +139,8 @@
     <ProjectReference Include="..\..\src\Xamarin.Forms.GoogleMaps.Clustering.iOS\Xamarin.Forms.GoogleMaps.Clustering.iOS.csproj">
       <Project>{c599d787-23ad-4cf1-a47f-27e889318199}</Project>
       <Name>Xamarin.Forms.GoogleMaps.Clustering.iOS</Name>
+      <IsAppExtension>false</IsAppExtension>
+      <IsWatchApp>false</IsWatchApp>
     </ProjectReference>
     <ProjectReference Include="..\Sample\Xamarin.Forms.v5.Sample.csproj">
       <Project>{73881260-f37c-42be-ac45-8ea48d2f99ff}</Project>

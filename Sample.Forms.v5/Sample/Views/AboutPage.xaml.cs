@@ -38,17 +38,19 @@ namespace Xamarin.Forms.v5.Sample.Views
             Map.ClusterClicked += MapOnClusterClicked;
             Map.InfoWindowClicked += MapOnInfoWindowClicked;
             Map.InfoWindowLongClicked += MapOnInfoWindowLongClicked;
-
+            
             Map.Cluster();
         }
 
-        private async void MapOnClusterClicked(object sender, ClusterClickedEventArgs e)
+        private bool MapOnClusterClicked(object sender, ClusterClickedEventArgs e)
         {
-            await DisplayAlert("Cluster clicked", $"{e.ItemsCount} pins \n{e.Position.Latitude} {e.Position.Longitude}", "Cancel");
+            DisplayAlert("Cluster clicked", $"{e.ItemsCount} pins \n{e.Position.Latitude} {e.Position.Longitude}", "Cancel");
+            return true;
         }
 
         private async void MapOnPinClicked(object sender, PinClickedEventArgs e)
         {
+            e.Handled = true;
             await DisplayAlert("Pin clicked", e.Pin?.Label, "Cancel");
         }
 

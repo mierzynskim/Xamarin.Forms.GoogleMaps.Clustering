@@ -10,6 +10,7 @@ using System.Collections.Concurrent;
 using Xamarin.Forms.GoogleMaps.Android.Factories;
 using Xamarin.Forms.GoogleMaps;
 using AndroidBitmapDescriptor = Android.Gms.Maps.Model.BitmapDescriptor;
+using AndroidBitmapDescriptorFactory = Android.Gms.Maps.Model.BitmapDescriptorFactory;
 
 namespace Xamarin.Forms.v5.Sample.Droid
 {

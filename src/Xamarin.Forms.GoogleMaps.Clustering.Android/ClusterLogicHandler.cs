@@ -24,8 +24,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
         {
             var pins = GetClusterPins(cluster);
             var clusterPosition = new Position(cluster.Position.Latitude, cluster.Position.Longitude);
-            map.SendClusterClicked(cluster.Items.Count, pins, clusterPosition);
-            return false;
+            return map.SendClusterClicked(cluster.Items.Count, pins, clusterPosition);            
         }
 
         private List<Pin> GetClusterPins(ICluster cluster)
@@ -44,16 +43,20 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
         {
             var targetPin = logic.LookupPin(nativeItemObj as ClusteredMarker);
            
-            targetPin?.SendTap();
+            var eventHandled = targetPin?.SendTap();
 
             if (targetPin != null)
             {
                 if (!ReferenceEquals(targetPin, map.SelectedPin))
                     map.SelectedPin = targetPin;
-                map.SendPinClicked(targetPin);
+                var pinClickedHandled = map.SendPinClicked(targetPin);
+                if(eventHandled != true) //eigher not handled at all or user returned 'not handled' signal so this one will decide
+                {
+                    eventHandled = pinClickedHandled;
+                }
             }
 
-            return false;
+            return eventHandled ?? false; //either we handled it of return default 'false'
         }
 
         public void OnClusterInfoWindowClick(ICluster cluster)
