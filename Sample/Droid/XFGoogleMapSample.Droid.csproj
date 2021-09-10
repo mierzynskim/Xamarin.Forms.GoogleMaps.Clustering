@@ -103,9 +103,6 @@
     <PackageReference Include="Xamarin.Android.Support.Design">
       <Version>26.0.2</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.v4">
-      <Version>26.0.2</Version>
-    </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.v7.CardView">
       <Version>26.0.2</Version>
     </PackageReference>

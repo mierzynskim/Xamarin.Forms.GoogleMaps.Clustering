@@ -61,12 +61,6 @@
     <TransformFile Include="Transforms\Metadata.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.Support.v4">
-      <Version>27.0.2.1</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Build.Download">
-      <Version>0.4.11</Version>
-    </PackageReference>
     <PackageReference Include="Xamarin.GooglePlayServices.Maps">
       <Version>60.1142.1</Version>
     </PackageReference>
