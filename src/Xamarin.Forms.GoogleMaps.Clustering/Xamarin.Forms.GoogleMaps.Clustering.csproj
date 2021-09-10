@@ -7,6 +7,6 @@
 
     <ItemGroup>
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
-        <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="3.2.0" />
+        <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="3.3.0" />
     </ItemGroup>
 </Project>
