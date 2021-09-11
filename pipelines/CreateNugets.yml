@@ -1,0 +1,32 @@
+name: '$(Build.SourceBranchName)_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:rr)'
+
+pool:
+  vmImage: 'macOS-latest'
+
+trigger: none
+
+stages:
+- stage: CreatePackages  
+  displayName: Create Packages 
+
+  jobs:
+  - job: CreatePackages  
+    displayName: Create Packages
+
+    variables:
+      BuildConfiguration: 'Release'
+      SlnFile: 'src/Xamarin.Forms.GoogleMaps.Clustering.sln'
+     
+    continueOnError: false  # 'true' if future jobs should run even if this job fails; defaults to 'false'
+    steps: 
+    - task: NuGetToolInstaller@0
+    
+    - task: NuGetCommand@2
+      inputs:
+        restoreSolution: '$(SlnFile)'
+    
+    - task: MSBuild@1
+      displayName: 'Build solution $(SlnFile)'
+      inputs:
+        solution: $(SlnFile)
+        msbuildArguments: '/t:restore;build /p:Configuration=Release'
