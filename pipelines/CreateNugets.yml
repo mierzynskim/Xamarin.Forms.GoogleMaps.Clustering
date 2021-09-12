@@ -22,6 +22,7 @@ stages:
     - task: NuGetToolInstaller@0
     
     - task: NuGetCommand@2
+      displayName: 'restoring nugets'
       inputs:
         restoreSolution: '$(SlnFile)'
     
@@ -32,6 +33,7 @@ stages:
         msbuildArguments: '/t:restore;build /p:Configuration=Release'
 
     - task: NuGetCommand@2
+      displayName: 'packing nugets'
       inputs:
         command: 'pack'
         packagesToPack: 'src/Xamarin.Forms.GoogleMaps.Clustering.nuspec'
@@ -39,6 +41,7 @@ stages:
         packDestination: '$(Build.ArtifactStagingDirectory)/packages'
     
     - task: NuGetCommand@2
+      displayName: 'pushing packages to nuget repository'
       inputs:
         command: 'push'
         packagesToPush: '$(Build.ArtifactStagingDirectory)/packages/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/packages/**/*.symbols.nupkg'
