@@ -42,9 +42,10 @@ namespace XFGoogleMapSample
             Map.Cluster();
         }
 
-        private async void MapOnClusterClicked(object sender, ClusterClickedEventArgs e)
+        private bool MapOnClusterClicked(object sender, ClusterClickedEventArgs e)
         {
-            await DisplayAlert("Cluster clicked", $"{e.ItemsCount} pins \n{e.Position.Latitude} {e.Position.Longitude}", "Cancel");
+            DisplayAlert("Cluster clicked", $"{e.ItemsCount} pins \n{e.Position.Latitude} {e.Position.Longitude}", "Cancel");
+            return false;           
         }
 
         private async void MapOnPinClicked(object sender, PinClickedEventArgs e)

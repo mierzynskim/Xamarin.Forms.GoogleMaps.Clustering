@@ -1,0 +1,49 @@
+name: '$(Build.SourceBranchName)_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:rr)'
+
+pool:
+  vmImage: 'macOS-latest'
+
+trigger: none
+
+stages:
+- stage: CreatePackages  
+  displayName: Create Packages 
+
+  jobs:
+  - job: CreatePackages  
+    displayName: Create Packages
+
+    variables:
+      BuildConfiguration: 'Release'
+      SlnFile: 'src/Xamarin.Forms.GoogleMaps.Clustering.sln'
+     
+    continueOnError: false  # 'true' if future jobs should run even if this job fails; defaults to 'false'
+    steps: 
+    - task: NuGetToolInstaller@0
+    
+    - task: NuGetCommand@2
+      displayName: 'restoring nugets'
+      inputs:
+        restoreSolution: '$(SlnFile)'
+    
+    - task: MSBuild@1
+      displayName: 'Build solution $(SlnFile)'
+      inputs:
+        solution: $(SlnFile)
+        msbuildArguments: '/t:restore;build /p:Configuration=Release'
+
+    - task: NuGetCommand@2
+      displayName: 'packing nugets'
+      inputs:
+        command: 'pack'
+        packagesToPack: 'src/Xamarin.Forms.GoogleMaps.Clustering.nuspec'
+        versioningScheme: 'byBuildNumber'   
+        packDestination: '$(Build.ArtifactStagingDirectory)/packages'
+    
+    - task: NuGetCommand@2
+      displayName: 'pushing packages to nuget repository'
+      inputs:
+        command: 'push'
+        packagesToPush: '$(Build.ArtifactStagingDirectory)/packages/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/packages/**/*.symbols.nupkg'
+        nuGetFeedType: 'internal'
+        publishVstsFeed: 'af546c02-356e-411a-920f-561833718b89'

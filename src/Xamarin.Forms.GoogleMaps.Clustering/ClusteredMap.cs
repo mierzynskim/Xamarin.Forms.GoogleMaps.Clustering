@@ -11,7 +11,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
             typeof(ClusteredMap),
             default(ClusterOptions));
 
-        public event EventHandler<ClusterClickedEventArgs> ClusterClicked;
+        public event Func<object, ClusterClickedEventArgs, bool> ClusterClicked;
         
         internal Action OnCluster { get; set; }
 
@@ -41,10 +41,14 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
                 PendingClusterRequest = true;
         }
         
-        internal void SendClusterClicked(int itemsCount, IEnumerable<Pin> pins, Position position)
+        internal bool SendClusterClicked(int itemsCount, IEnumerable<Pin> pins, Position position)
         {
             var args = new ClusterClickedEventArgs(itemsCount, pins, position);
-            ClusterClicked?.Invoke(this, args);
+            if(ClusterClicked != null)
+            {
+                return ClusterClicked(this, args);
+            }
+            return false;
         }
     }
 }

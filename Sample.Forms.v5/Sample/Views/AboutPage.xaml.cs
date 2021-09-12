@@ -1,0 +1,72 @@
+﻿using System;
+using System.Collections.Generic;
+
+using Xamarin.Forms;
+using Xamarin.Forms.GoogleMaps;
+using Xamarin.Forms.GoogleMaps.Clustering;
+
+namespace Xamarin.Forms.v5.Sample.Views
+{
+    public partial class AboutPage : ContentPage
+    {
+        private const int ClusterItemsCount = 1000;
+        private const double Extent = 0.2;
+
+        private readonly Position currentPosition = new Position(52.225665764, 21.003833318);
+        private readonly Random random = new Random();
+
+        public AboutPage()
+        {
+            InitializeComponent();
+
+            Map.MoveToRegion(MapSpan.FromCenterAndRadius(currentPosition, Distance.FromMeters(100)));
+
+            for (var i = 0; i <= ClusterItemsCount; i++)
+            {
+                var lat = currentPosition.Latitude + Extent * GetRandomNumber(-1.0, 1.0);
+                var lng = currentPosition.Longitude + Extent * GetRandomNumber(-1.0, 1.0);
+
+                Map.Pins.Add(new Pin()
+                {
+                    Position = new Position(lat, lng),
+                    Label = $"Item {i}",
+                    Icon = BitmapDescriptorFactory.FromBundle("image01.png")
+                });
+            }
+
+            Map.PinClicked += MapOnPinClicked;
+            Map.ClusterClicked += MapOnClusterClicked;
+            Map.InfoWindowClicked += MapOnInfoWindowClicked;
+            Map.InfoWindowLongClicked += MapOnInfoWindowLongClicked;
+            
+            Map.Cluster();
+        }
+
+        private bool MapOnClusterClicked(object sender, ClusterClickedEventArgs e)
+        {
+            DisplayAlert("Cluster clicked", $"{e.ItemsCount} pins \n{e.Position.Latitude} {e.Position.Longitude}", "Cancel");
+            return true;
+        }
+
+        private async void MapOnPinClicked(object sender, PinClickedEventArgs e)
+        {
+            e.Handled = true;
+            await DisplayAlert("Pin clicked", e.Pin?.Label, "Cancel");
+        }
+
+        private async void MapOnInfoWindowClicked(object sender, InfoWindowClickedEventArgs e)
+        {
+            await DisplayAlert("Info clicked", $"{e.Pin?.Position.Latitude} {e.Pin?.Position.Longitude}", "Cancel");
+        }
+
+        private async void MapOnInfoWindowLongClicked(object sender, InfoWindowLongClickedEventArgs e)
+        {
+            await DisplayAlert("Info long clicked", $"{e.Pin?.Position.Latitude} {e.Pin?.Position.Longitude}", "Cancel");
+        }
+
+        private double GetRandomNumber(double minimum, double maximum)
+        {
+            return random.NextDouble() * (maximum - minimum) + minimum;
+        }
+    }    
+}

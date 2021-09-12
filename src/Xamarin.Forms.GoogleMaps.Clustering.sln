@@ -1,12 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Forms.GoogleMaps.Clustering", "Xamarin.Forms.GoogleMaps.Clustering\Xamarin.Forms.GoogleMaps.Clustering.csproj", "{5542CBE9-1858-46A1-888F-CFBF8F05CFFE}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31613.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xamarin.Forms.GoogleMaps.Clustering", "Xamarin.Forms.GoogleMaps.Clustering\Xamarin.Forms.GoogleMaps.Clustering.csproj", "{5542CBE9-1858-46A1-888F-CFBF8F05CFFE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Forms.GoogleMaps.Clustering.Android", "Xamarin.Forms.GoogleMaps.Clustering.Android\Xamarin.Forms.GoogleMaps.Clustering.Android.csproj", "{AAA2A1F0-B96F-40C8-B4FE-F42149E848B5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Forms.GoogleMaps.Clustering.iOS", "Xamarin.Forms.GoogleMaps.Clustering.iOS\Xamarin.Forms.GoogleMaps.Clustering.iOS.csproj", "{C599D787-23AD-4CF1-A47F-27E889318199}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Forms.GoogleMaps.Android.Utils", "Xamarin.Forms.GoogleMaps.Android.Utils\Xamarin.Forms.GoogleMaps.Android.Utils.csproj", "{F38A2B58-0051-4E72-ADF9-9305AD4274A8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pipelines", "pipelines", "{4350D98D-CFD5-4946-92BE-F51238D2C986}"
+	ProjectSection(SolutionItems) = preProject
+		..\pipelines\CreateNugets.yml = ..\pipelines\CreateNugets.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{11357DB0-5E27-41AA-9155-FA736811A061}"
+	ProjectSection(SolutionItems) = preProject
+		Xamarin.Forms.GoogleMaps.Clustering.nuspec = Xamarin.Forms.GoogleMaps.Clustering.nuspec
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +43,11 @@ Global
 		{F38A2B58-0051-4E72-ADF9-9305AD4274A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F38A2B58-0051-4E72-ADF9-9305AD4274A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F38A2B58-0051-4E72-ADF9-9305AD4274A8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {31234393-B8D2-47D3-B3FE-F4BC70D623A6}
 	EndGlobalSection
 EndGlobal
