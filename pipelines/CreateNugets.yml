@@ -30,3 +30,17 @@ stages:
       inputs:
         solution: $(SlnFile)
         msbuildArguments: '/t:restore;build /p:Configuration=Release'
+
+    - task: NuGetCommand@2
+      inputs:
+        command: 'pack'
+        packagesToPack: 'src/Xamarin.Forms.GoogleMaps.Clustering.nuspec'
+        versioningScheme: 'byBuildNumber'   
+        packDestination: '$(Build.ArtifactStagingDirectory)/packages'
+    
+    - task: NuGetCommand@2
+      inputs:
+        command: 'push'
+        packagesToPush: '$(Build.ArtifactStagingDirectory)/packages/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/packages/**/*.symbols.nupkg'
+        nuGetFeedType: 'internal'
+        publishVstsFeed: 'af546c02-356e-411a-920f-561833718b89'
